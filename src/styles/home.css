@@ -23,6 +23,8 @@
     border-radius: 5px;
     border-color: coral;
     border-style: solid;
+    text-decoration: none;
+    color: black;
 }
 
 .contentOne a:hover{

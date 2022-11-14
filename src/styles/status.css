@@ -19,7 +19,7 @@
 }
 
 .st-content p{
-    font-size: 18px;
+    font-size: 15px;
     margin: 10px;
     margin-left: 50px;
     margin-right: 50px;
@@ -27,11 +27,23 @@
     border-radius: 10px;
 }
 
-.st-content button{
+.status a{
     font-size: 18px;
-    margin: 10px;
+    font-weight: 350;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: coral;
+    border-style: solid;
+    margin: 5px;
     margin-left: 50px;
     margin-right: 50px;
-    padding: 5px;
-    border-radius: 10px;
+    width:auto;
+    text-decoration: none;
+    color: black;
+    float: right;
+}
+
+.status a:hover{
+    background-color: coral;
 }

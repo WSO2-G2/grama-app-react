@@ -7,9 +7,10 @@
     display: flex;
     flex-direction: column;
     margin-top: 150px;
+    margin-bottom: 50px;
 }
 
-.opt-content a{
+.options a{
     font-size: 18px;
     font-weight: 350;
     cursor: pointer;
@@ -21,4 +22,7 @@
     margin-left: 50px;
     margin-right: 50px;
     width:auto;
+    text-decoration: none;
+    color: black;
+    float: right;
 }
