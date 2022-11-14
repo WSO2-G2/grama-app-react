@@ -6,7 +6,42 @@
 .aply-content {
     display: flex;
     flex-direction: column;
-    margin-top: 150px;
+    margin-top: 50px;
+}
+
+.aply-content h2{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.aply-content label{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.aply-content input{
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px;
+    border-color: coral;
+    border-radius: 10px;
+}
+
+.aply-content input:focus{
+    border-color: coral;
+}
+
+.aply-content img{
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px;
+    border-color: coral;
+    border-radius: 10px;
+    height: 200px;
+    width: 500px;
 }
 
 .aply-content a{

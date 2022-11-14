@@ -1,0 +1,37 @@
+.status{
+    display: flex;
+    background-color: white;
+}
+
+.st-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.st-content h2{
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.st-content p{
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.st-content button{
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px;
+    border-radius: 10px;
+}
