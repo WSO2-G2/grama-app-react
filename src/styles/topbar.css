@@ -1,0 +1,59 @@
+.topBar{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: right;
+    background-color: white;
+}
+
+.topLeft{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: left;
+    background-color: white;
+}
+
+.topLeft h2{
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: coral;
+}
+
+.topRight{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: right;
+    background-color: white;
+}
+
+.topList{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.topList li{
+    margin-right: 35px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 350;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: coral;
+    border-style: solid;
+}
+
+.topList li:hover{
+    background-color:coral;
+}
+
+.topList a{
+    text-decoration: none;
+    color: black;
+}

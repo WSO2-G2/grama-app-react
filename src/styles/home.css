@@ -1,0 +1,39 @@
+.home{
+    display: flex;
+    background-color: white;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    flex: 12;
+    justify-items: center;
+}
+
+.contentOne{
+    flex: 6;
+}
+
+.contentOne a{
+    margin: 10% 30% 10% 4%;
+    font-size: 18px;
+    font-weight: 350;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: coral;
+    border-style: solid;
+}
+
+.contentOne a:hover{
+    background-color: coral;
+}
+
+.contentOne p {
+    padding: 10% 30% 10% 4%;
+    font-size:xx-large;
+}
+
+.contentOne img{
+    margin-right: 0px;
+}
