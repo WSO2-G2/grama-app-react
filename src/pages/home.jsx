@@ -11,7 +11,7 @@ export default function Home() {
     <div className="home">
       <div className='content'>
         <div className='contentOne'>
-          <p>HHHHHHHHHH Get your Grama Certificate and verify yourselves in a flash</p>
+          <p>Welcome!, Get your Grama Certificate and verify yourselves in a flash</p>
           <a href="/options">Go &rarr;</a>
         </div>
         <div className='contentOne'>
