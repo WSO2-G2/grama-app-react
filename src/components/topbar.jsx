@@ -1,11 +1,44 @@
 // import logo from '../logo.svg';
 import '../styles/topbar.css'
 import { useAuthContext } from "@asgardeo/auth-react";
+import { useEffect } from 'react';
 
 
 export default function TopBar() {
 
-  const { state, signIn, signOut } = useAuthContext();
+  const {
+    state,
+    signIn,
+    signOut,
+    getBasicUserInfo,
+    getIDToken,
+    getDecodedIDToken,
+    on
+  } = useAuthContext();
+  
+  useEffect(() => {
+
+    if (!state?.isAuthenticated) {
+        return;
+    }
+
+    (async () => {
+        const basicUserInfo = await getBasicUserInfo();
+        const idToken = await getIDToken();
+        const decodedIDToken = await getDecodedIDToken();
+
+        const derivedState = {
+            authenticateResponse: basicUserInfo,
+            idToken: idToken.split("."),
+            decodedIdTokenHeader: JSON.parse(atob(idToken.split(".")[0])),
+            decodedIDTokenPayload: decodedIDToken
+        };
+
+        console.log(derivedState);
+
+        setDerivedAuthenticationState(derivedState);
+      })();
+    }, [ state.isAuthenticated ]);
 
   return (
     <div className='topBar'>
