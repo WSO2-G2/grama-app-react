@@ -21,6 +21,7 @@ export default function TopBar() {
               <ul>
                 <li>{state.username}</li>
                 <li>{state.email}</li>
+                <li>{state.displayName}</li>
               </ul>
 
               <li><button onClick={() => signOut()}>Logout</button></li>
