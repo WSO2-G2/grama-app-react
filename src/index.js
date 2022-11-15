@@ -13,7 +13,7 @@ const Index = () => (
             signOutRedirectURL: "https://grama-app-react.vercel.app/",
             clientID: "CJufdyKxTDrSXfCG3RIga6O9CtQa",
             baseUrl: "https://api.asgardeo.io/t/wso2grama",
-            scope: [ "openid","profile" ]
+            scope: [ "openid","profile","email" ]
         } }
     >
       <React.StrictMode>
