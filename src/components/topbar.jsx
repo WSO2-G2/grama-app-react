@@ -1,7 +1,7 @@
 // import logo from '../logo.svg';
 import '../styles/topbar.css'
 import { useAuthContext } from "@asgardeo/auth-react";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function TopBar() {
