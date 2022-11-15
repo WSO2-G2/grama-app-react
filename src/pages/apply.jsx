@@ -1,6 +1,6 @@
-import logo from '../logo.svg';
 import TopBar from '../components/topbar';
 import '../styles/apply.css';
+import Side from '../components/side';
 
 export default function Apply() {
   return (
@@ -13,7 +13,7 @@ export default function Apply() {
                 <div className='aply-content'>
       <h2>Apply for the Grama Certificate</h2>
                     <label>NIC or Passport No</label>
-                    <input type="text" placeholder='NIC or Passpart No'/>
+                    <input type="text" placeholder='NIC or Passport No'/>
                     <label>Current Address</label>
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
@@ -25,7 +25,7 @@ export default function Apply() {
             <a href="/options" className='backbtn'>Back</a>
         </div>
         <div className='contentOne'>
-          <img src='https://media.istockphoto.com/id/1290482722/vector/people-taking-documents-from-shelves.jpg?s=612x612&w=is&k=20&c=DW8oveHrghOYNxC0xilZDqpq38bfBE_RuyJ6o7UIk-8='></img>
+          <Side />
         </div>
       </div>
     </div>

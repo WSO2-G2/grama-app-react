@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './styles/App.css';
 import Home from './pages/home';
 import Options from './pages/options';
