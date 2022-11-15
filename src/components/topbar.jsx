@@ -15,6 +15,9 @@ export default function TopBar() {
     getDecodedIDToken,
     on
   } = useAuthContext();
+
+  const [ derivedAuthenticationState, setDerivedAuthenticationState ] = useState(null);
+
   
   useEffect(() => {
 
