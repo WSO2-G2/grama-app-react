@@ -1,7 +1,12 @@
 import logo from '../logo.svg';
 import '../styles/topbar.css'
+import { useAuthContext } from "@asgardeo/auth-react";
+
 
 export default function TopBar() {
+
+  const { state, signIn, signOut } = useAuthContext();
+
   return (
     <div className='topBar'>
       <div className='topLeft'>
@@ -9,7 +14,21 @@ export default function TopBar() {
       </div>
       <div className="topRight">
         <ul className='topList'>
-          <li><a href="#">Sign In</a></li>
+        {
+        state.isAuthenticated
+          ? (
+            <div>
+              <ul>
+                <li>{state.username}</li>
+              </ul>
+
+              <li><button onClick={() => signOut()}>Logout</button></li>
+            </div>
+          )
+          : <li><button onClick={ () => signIn() }>Login</button></li>
+        }
+          
+          {/* <li><a href="#">Sign In</a></li> */}
         </ul>
       </div>
     </div>
