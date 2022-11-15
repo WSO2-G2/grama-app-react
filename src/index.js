@@ -1,6 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
 import { AuthProvider } from "@asgardeo/auth-react";
+// import ReactDOM from 'react-dom/client';
+import './styles/index.css';
+import App from './App';
+// import reportWebVitals from './reportWebVitals';
 
 const Index = () => (
     <AuthProvider
