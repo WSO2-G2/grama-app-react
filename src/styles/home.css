@@ -8,9 +8,11 @@
     flex-direction: row;
     flex: 12;
     justify-items: center;
+    width: 50%;
 }
 
 .contentOne{
+    width: 50%;
     flex: 6;
 }
 
