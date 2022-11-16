@@ -26,3 +26,7 @@
     color: black;
     float: right;
 }
+
+a:hover{
+    text-decoration: none !important;
+}
