@@ -73,7 +73,6 @@ export default function Status() {
           <div className='contentOne'>
             <form>
               <div className='st-content'>
-                <h2>Email :{email}</h2>
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
