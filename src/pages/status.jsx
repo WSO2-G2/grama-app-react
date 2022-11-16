@@ -14,6 +14,7 @@ export default function Status() {
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
+  const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(msg);
   const [addressCheck, setaddressCheck] = useState(msg);
   const [policeCheck, setpoliceCheck] = useState(msg);
@@ -29,6 +30,7 @@ export default function Status() {
 
       const basicUserInfo = await getBasicUserInfo();
       const email = basicUserInfo.email;
+      setemail(email)
 
       try {
 
@@ -71,6 +73,7 @@ export default function Status() {
           <div className='contentOne'>
             <form>
               <div className='st-content'>
+                <h2>Email :{email}</h2>
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
