@@ -1,6 +1,8 @@
 import '../styles/status.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
+import { Link } from 'react-router-dom';
+
 
 export default function Status() {
   return (
@@ -21,7 +23,8 @@ export default function Status() {
                 </div>
                 <a href="#" type='submit'>Get your Grama Certificate</a>
             </form>
-            <a href="/options">Back</a>
+            {/* <a href="/options">Back</a> */}
+            <Link to={"/options"}>Back</Link>
         </div>
         <div className='contentOne'>
           <Side />
