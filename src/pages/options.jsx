@@ -1,10 +1,11 @@
 import '../styles/options.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
-import axios from 'axios';
-import { useEffect } from 'react';
+
 
 import './index.css'; 
+import { Link } from 'react-router-dom';
+
 
 
 export default function Options() {
@@ -24,12 +25,20 @@ export default function Options() {
       <div className='content'>
         <div className='contentOne'>
           <div className='opt-content'>
-            <a href="/apply">Apply for the Grama Certificate &rarr;</a>
-            <a href="/status/appId">Check Status &rarr;</a>
-            <a href="#">Help &rarr;</a>
-            
+
+            {/* <a href="/apply">Apply for the Grama Certificate &rarr;</a> */}
+            <Link to={"/apply"}>Apply for the Grama Certificate</Link>
+            {/* <a href="/status/appId">Check Status &rarr;</a> */}
+            <Link to={"/status/appId"}>Check Status</Link>
+
+            {/* <a href="#">Help &rarr;</a> */}
+            <Link to={"/help"}>Help</Link>
+
+
           </div>
-          <a href="/">Back</a>
+          {/* <a href="/">Back</a> */}
+          <Link to={"/"}>Back</Link>
+
         </div>
         <div className='contentOne'>
           <Side />

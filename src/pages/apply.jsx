@@ -1,6 +1,7 @@
 import TopBar from '../components/topbar';
 import '../styles/apply.css';
 import Side from '../components/side';
+import { Link } from 'react-router-dom';
 
 export default function Apply() {
   return (
@@ -22,7 +23,9 @@ export default function Apply() {
                 </div>
                 <a href="#" type='submit'>Apply</a>
             </form>
-            <a href="/options" className='backbtn'>Back</a>
+            {/* <a href="/options" className='backbtn'>Back</a> */}
+            <Link to={"/options"}>Back</Link>
+
         </div>
         <div className='contentOne'>
           <Side />
