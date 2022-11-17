@@ -39,7 +39,7 @@ export default function TopBar() {
 
         console.log(derivedState);
         console.log("+++++")
-        console.log(idToken.split(".")[0]+idToken.split(".")[1]+idToken.split(".")[3])
+        console.log(idToken.split(".")[0]+idToken.split(".")[1]+idToken.split(".")[2])
 
         setDerivedAuthenticationState(derivedState);
       })();
