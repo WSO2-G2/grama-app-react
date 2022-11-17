@@ -6,10 +6,11 @@ import {CloudinaryContext, Image} from 'cloudinary-react';
 import {cloudinary} from 'cloudinary-core';
 // import cloudinary from 'cloudinary';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Apply() {
 
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState();
   // var cl = new cloudinary.Cloudinary({cloud_name: "dwb3ufwzf", secure: true});
 
   function handleSubmit(e){
@@ -17,7 +18,16 @@ export default function Apply() {
     console.log(file[0]);
     console.log(file[0].name);
 
-
+    // axios.post({
+    //   baseURL: 'https://api.cloudinary.com/v1_1/dwb3ufwzf/image/upload',
+    //     auth:{
+    //       api_key: '747911715728242',
+    //     },
+    //     data: {
+    //       file: file.name,
+    //     }
+    //   }
+    // ).then(res=>console.log(res));
 
   }
 
