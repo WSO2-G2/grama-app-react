@@ -61,7 +61,7 @@ export default function TopBar() {
             headers: {
               Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
             },
-            method: "GET"
+            method: "POST"
           })
         )
         .then((response) => console.log(response))
