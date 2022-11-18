@@ -37,6 +37,7 @@ export default function TopBar() {
             decodedIDTokenPayload: decodedIDToken
         };
 
+        console.log(state);
         console.log(derivedState);
         console.log("+++++")
         console.log(idToken.split(".")[0]+idToken.split(".")[1]+idToken.split(".")[2])
