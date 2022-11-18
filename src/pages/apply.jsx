@@ -11,23 +11,31 @@ import axios from 'axios';
 export default function Apply() {
 
   const [file, setFile] = useState();
+  const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
   // var cl = new cloudinary.Cloudinary({cloud_name: "dwb3ufwzf", secure: true});
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault();
     console.log(file[0]);
     console.log(file[0].name);
 
-    // axios.post({
-    //   baseURL: 'https://api.cloudinary.com/v1_1/dwb3ufwzf/image/upload',
-    //     auth:{
-    //       api_key: '747911715728242',
-    //     },
-    //     data: {
-    //       file: file.name,
-    //     }
-    //   }
-    // ).then(res=>console.log(res));
+    const formData = new FormData();
+    formData.append('file', file[0]);
+    // replace this with your upload preset name
+    formData.append('upload_preset', 'nmknlgjq');
+    const options = {
+      method: 'POST',
+      body: formData,
+    };
+    console.log(options);
+
+    // replace cloudname with your Cloudinary cloud_name
+    return await fetch('https://api.Cloudinary.com/v1_1/dwb3ufwzf/image/upload', options)
+      .then(res => res.json())
+      .then(res => {
+        setImgURL(res.public_id);
+      })
+      .catch(err => console.log(err));
 
   }
 
@@ -49,7 +57,7 @@ export default function Apply() {
                     <img src='https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0'></img>
                 <CloudinaryContext cloudName="dwb3ufwzf">
                   <div>
-                    <Image publicId="cld-sample-4" width="50" />
+                    <Image publicId={imgURL} width="50" />
                   </div>
                 </CloudinaryContext>
                 </div>
