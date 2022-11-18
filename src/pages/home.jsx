@@ -14,7 +14,7 @@ export default function Home() {
         <div className='contentOne'>
           <p>Welcome!, Get your Grama Certificate and verify yourselves in a flash</p>
           {/* <a href="/options">Go &rarr;</a> */}
-          <Link to={"/options"}>Go</Link>
+          <Link to={"/options"} className='linkBut'>Get Started</Link>
         </div>
         <div className='contentOne'>
           <Side />

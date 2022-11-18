@@ -4,6 +4,7 @@ import Apply from '../pages/apply'
 import Home from '../pages/home'
 import Options from '../pages/options'
 import Status from '../pages/status'
+import NIC from '../pages/nic'
 
 function routes() {
   return (
@@ -13,7 +14,9 @@ function routes() {
             <Route exact path="/" component={Home} />
             <Route path="/options" component={Options} />
             <Route path="/status/appId" component={Status} />
-            <Route path="/apply" component={Apply} />            
+            <Route path="/apply" component={Apply} />  
+            <Route path="/nic" component={NIC} />            
+
             
         </Switch>
     

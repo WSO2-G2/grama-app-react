@@ -1,3 +1,7 @@
+*{
+    overflow-y: hidden;
+}
+
 .options{
     display: flex;
     background-color: white;
@@ -6,11 +10,12 @@
 .opt-content {
     display: flex;
     flex-direction: column;
-    margin-top: 150px;
+   
     margin-bottom: 50px;
+    margin-top: 80px;
 }
 
-.options a{
+.options .opt-content a{
     font-size: 18px;
     font-weight: 350;
     cursor: pointer;
@@ -21,12 +26,27 @@
     margin: 5px;
     margin-left: 50px;
     margin-right: 50px;
+    width: 500px !important;
     width:auto;
     text-decoration: none;
+    background-color: transparent !important;
     color: black;
+    
     float: right;
 }
 
-a:hover{
+.opt-content a:hover{
+    background-color: coral !important;
     text-decoration: none !important;
+    color: #fff;
+}
+
+.backButton{
+    width: 100px !important;
+    background-color: coral !important;
+    margin-left: 50px !important;
+    margin-top: 50px !important;
+}
+.backButton:hover{
+    text-decoration: none;
 }

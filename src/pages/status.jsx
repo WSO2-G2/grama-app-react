@@ -4,7 +4,7 @@ import Side from '../components/side';
 
 import { Steps } from 'rsuite';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 
 export default function Status() {
 
@@ -24,7 +24,10 @@ export default function Status() {
       // 3. check if police check is ok
 
   }, []); 
-
+  const imgStyle={
+    marginTop:'-40px',
+    marginLeft:'30px'
+  }
 
   return (
     <>
@@ -37,11 +40,7 @@ export default function Status() {
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
-                {/* <p>Identity Check status</p> */}
-                {/* <p>Police Check status</p>
-                <p>Address Check status</p>
-                <p>if all checks are approved</p> */}
-             
+               
               </div>
 
               <div className='stepsDiv'>
@@ -57,7 +56,7 @@ export default function Status() {
             <a href="/options">Back</a>
           </div>
           <div className='contentOne'>
-            <Side />
+          <img src='/status.PNG' width="500px" height="500px" style={imgStyle}/>
           </div>
 
         </div>
