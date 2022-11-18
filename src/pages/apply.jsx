@@ -4,7 +4,6 @@ import Side from '../components/side';
 import { Link } from 'react-router-dom';
 import {CloudinaryContext, Image} from 'cloudinary-react';
 import {cloudinary} from 'cloudinary-core';
-// import cloudinary from 'cloudinary';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -12,7 +11,6 @@ export default function Apply() {
 
   const [file, setFile] = useState();
   const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
-  // var cl = new cloudinary.Cloudinary({cloud_name: "dwb3ufwzf", secure: true});
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -53,8 +51,7 @@ export default function Apply() {
                     <label>Current Address</label>
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
-                    <input type="file" onChange={(e)=>{setFile(e.target.files)}}/>
-                    <img src='https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0'></img>
+                    <input type="file" accept="image/png" onChange={(e)=>{setFile(e.target.files)}}/>
                 <CloudinaryContext cloudName="dwb3ufwzf">
                   <div>
                     <Image publicId={imgURL} width="50" />
