@@ -16,7 +16,7 @@ function routes() {
             <Route path="/options" component={Options} />
             <Route path="/status/appId" component={Status} />
             <Route path="/apply" component={Apply} /> 
-            <SecureRoute path={ "/secure-page" } component={ <Help /> } callback={ callback } />
+            <SecureRoute path={ "/help" } component={ <Help /> } callback={ callback } />
             
         </Switch>
     
