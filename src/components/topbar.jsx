@@ -57,7 +57,7 @@ export default function TopBar() {
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
         .then(() =>
-          fetch("https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-dev.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId", {
+          fetch("/", {
             headers: {
               Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
             },
