@@ -30,7 +30,7 @@ export default function Apply() {
     return await fetch('https://api.Cloudinary.com/v1_1/dwb3ufwzf/image/upload', options)
       .then(res => res.json())
       .then(res => {
-        setImgURL(res.public_id);
+        setImgURL(res.url);
       })
       .catch(err => console.log(err));
 
@@ -51,11 +51,14 @@ export default function Apply() {
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
                     <input type="file" accept="image/png" onChange={(e)=>{setFile(e.target.files)}}/>
-                <CloudinaryContext cloudName="dwb3ufwzf">
+                {/* <CloudinaryContext cloudName="dwb3ufwzf">
                   <div>
                     <Image publicId={imgURL} width="50" />
                   </div>
-                </CloudinaryContext>
+                </CloudinaryContext> */}
+                  <div>
+                    <img src={imgURL} width="50" />
+                  </div>
                 </div>
                 {/* <a href="#" type='submit'>Apply</a> */}
                 <Link onClick={handleSubmit} >Apply</Link>
