@@ -56,14 +56,14 @@ export default function TopBar() {
         })
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
-        .then(() => {
+        .then(() =>
           fetch("https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-dev.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?nic=19993321005v", {
             headers: {
               Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
             },
             method: "GET"
           })
-        })
+        )
         .then((response) => console.log(response))
         .catch((err) => {console.log("An error has occurred ...."); console.log(err);})
 
