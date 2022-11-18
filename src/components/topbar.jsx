@@ -88,7 +88,7 @@ export default function TopBar() {
               <li><button onClick={() => {localStorage.removeItem("API_TOKEN");signOut();}}>Logout</button></li>
             </div>
           )
-          : <li><button onClick={ () => signIn() }>Login</button></li>
+          : <li><button onClick={ () => {signIn().then(res=>console.log(res))} }>Login</button></li>
         }
           
           {/* <li><a href="#">Sign In</a></li> */}
