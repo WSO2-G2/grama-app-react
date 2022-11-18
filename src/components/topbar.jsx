@@ -55,7 +55,7 @@ export default function TopBar() {
           method: "POST"
         })
         .then((response) => response.json())
-        .then((resJson) => console.log(resJson))
+        .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
         .catch((err) => {console.log("An error has occurred ...."); console.log(err);})
 
       })();
