@@ -44,6 +44,20 @@ export default function TopBar() {
         console.log(idToken)
 
         setDerivedAuthenticationState(derivedState);
+
+        // Exhange idToken for API token using STS in Choreo
+        fetch("https://sts.choreo.dev/oauth2/token", {
+          body: "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&subject_token=ABCD&subject_token_type=urn:ietf:params:oauth:token-type:jwt&requested_token_type=urn:ietf:params:oauth:token-type:jwt",
+          headers: {
+            Authorization: "Basic VmhnbjEzMXI4Y0lnRjNTeGFlYlFzdnZJMnlBYTppZDFTVmI5WW5XNG4xUzM5cUpLRUhpU08wX1Vh",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          method: "POST"
+        })
+        .then((response) => response.json())
+        .then((resJson) => console.log(resJson))
+        .catch((err) => {console.log("An error has occurred ...."); console.log(err);})
+
       })();
     }, [ state.isAuthenticated ]);
 
