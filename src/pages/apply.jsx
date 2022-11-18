@@ -3,7 +3,6 @@ import '../styles/apply.css';
 import Side from '../components/side';
 import { Link } from 'react-router-dom';
 import {CloudinaryContext, Image} from 'cloudinary-react';
-import {cloudinary} from 'cloudinary-core';
 import { useState } from 'react';
 import axios from 'axios';
 
