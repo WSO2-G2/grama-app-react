@@ -37,9 +37,37 @@ export default function TopBar() {
             decodedIDTokenPayload: decodedIDToken
         };
 
+        console.log(state);
         console.log(derivedState);
+        console.log("+++++")
+        console.log(idToken.split(".")[0]+idToken.split(".")[1]+idToken.split(".")[2])
+        console.log("+++++")
+        console.log(idToken)
 
         setDerivedAuthenticationState(derivedState);
+
+        // Exhange idToken for API token using STS in Choreo
+        fetch("https://sts.choreo.dev/oauth2/token", {
+          body: "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&subject_token="+idToken+"&subject_token_type=urn:ietf:params:oauth:token-type:jwt&requested_token_type=urn:ietf:params:oauth:token-type:jwt",
+          headers: {
+            Authorization: "Basic VmhnbjEzMXI4Y0lnRjNTeGFlYlFzdnZJMnlBYTppZDFTVmI5WW5XNG4xUzM5cUpLRUhpU08wX1Vh",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          method: "POST"
+        })
+        .then((response) => response.json())
+        .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
+        .then(() =>
+          fetch("/", {
+            headers: {
+              Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
+            },
+            method: "POST"
+          })
+        )
+        .then((response) => console.log(response))
+        .catch((err) => {console.log("An error has occurred ...."); console.log(err);})
+
       })();
     }, [ state.isAuthenticated ]);
 
@@ -55,15 +83,13 @@ export default function TopBar() {
           ? (
             <div>
               <ul>
-                <li>{state.username}</li>
                 <li>{state.email}</li>
-                <li>{state.displayName}</li>
               </ul>
 
-              <li><button onClick={() => signOut()}>Logout</button></li>
+              <li><button onClick={() => {localStorage.removeItem("API_TOKEN");signOut();}}>Logout</button></li>
             </div>
           )
-          : <li><button onClick={ () => signIn() }>Login</button></li>
+          : <li><button onClick={ () => {signIn().then(res=>console.log(res))} }>Login</button></li>
         }
           
           {/* <li><a href="#">Sign In</a></li> */}

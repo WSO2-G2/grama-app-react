@@ -5,6 +5,8 @@ import Apply from './pages/apply';
 import Status from './pages/status';
 import NIC from './pages/nic';
 import { BrowserRouter as Router, Switch, Route,  } from "react-router-dom";
+import Help from './pages/help';
+// import { SecureRoute } from '@asgardeo/auth-react/dist/src';
 
 function App() {
 
@@ -16,8 +18,14 @@ function App() {
         <Route path="/options"> <Options/> </Route>
         <Route path="/apply"> <Apply/> </Route>
         <Route path="/status/:appId"> <Status/> </Route>
+
         <Route path="/nic"> <NIC/> </Route>
        
+
+        {/* <Route path="/help"><Help/></Route> */}
+        {/* <SecureRoute path={ "/help" } component={ <Help /> } callback={ ()=>console.log("CALLBACK") } /> */}
+
+
       </Switch>
     </Router>
     </>
