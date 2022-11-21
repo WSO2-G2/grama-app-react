@@ -58,7 +58,7 @@ export default function TopBar() {
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
         .then(() =>
-          fetch("/", {
+          fetch("https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord", {
             headers: {
               Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
             },
@@ -67,7 +67,8 @@ export default function TopBar() {
               "nic": "123456789",
               "name": "Joe Biden"
             },
-            method: "POST"
+            method: "POST",
+            mode:"no-cors"
           })
         )
         .then((response) => console.log(response))
