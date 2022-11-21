@@ -75,7 +75,7 @@ export default function NIC(props) {
             setState(2)
             setCurrentStatus('error')
             setTimeout(() => {
-           window.open('/status')
+           window.open('/status/appId')
               
             }, 2000);
 
@@ -97,7 +97,7 @@ export default function NIC(props) {
       else {
 setCurrentStatus("error")
 setTimeout(() => {
-  window.open('/status')
+  window.open('/status/appId')
      
    }, 2000);
 
