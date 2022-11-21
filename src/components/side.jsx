@@ -7,6 +7,6 @@ export default function Side() {
     marginTop:'-50px'
   }
   return (
-    <img src='/homePage.PNG' width="500px" height="500px" style={imgStyle}/>
+    <img src='/homePage.png' width="500px" height="500px" style={imgStyle}/>
   );
   }

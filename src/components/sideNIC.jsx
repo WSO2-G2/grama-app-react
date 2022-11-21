@@ -7,6 +7,6 @@ export default function SideNIC() {
     marginTop:'-50px'
   }
   return (
-    <img src='/nic.PNG' width="500px" height="500px" style={imgStyle}/>
+    <img src='/nic.png' width="500px" height="500px" style={imgStyle}/>
   );
   }
