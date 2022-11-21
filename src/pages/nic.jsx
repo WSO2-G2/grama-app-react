@@ -66,7 +66,7 @@ export default function NIC() {
 
 
         }).then((response) => {
-          console.log(response.data.body)
+          console.log(response)
         });
 
 
