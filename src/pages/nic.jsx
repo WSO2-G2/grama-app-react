@@ -2,6 +2,8 @@ import '../styles/home.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { Steps } from 'rsuite';
 
 import axios from 'axios';
@@ -13,6 +15,8 @@ export default function NIC() {
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [currentStatus, setCurrentStatus] = useState('pending')
+  
+
  
 
   const {
@@ -71,8 +75,7 @@ export default function NIC() {
             setState(2)
             setCurrentStatus('error')
             setTimeout(() => {
-
-              window.location('https://grama-app-react.vercel.app/apply')
+              this.props.history.push('/apply')
             }, 2000);
 
           }
