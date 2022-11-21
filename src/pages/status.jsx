@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 import { setRef } from '@mui/material';
 import { useAuthContext } from "@asgardeo/auth-react";
 
+import { jsPDF } from "jspdf";
+
 
 export default function Status() {
 
@@ -21,6 +23,15 @@ export default function Status() {
   const [addressCheck, setaddressCheck] = useState(msg);
   const [policeCheck, setpoliceCheck] = useState(msg);
   const {getBasicUserInfo} = useAuthContext();
+
+
+  const createPDF = () => {
+    const pdf = new jsPDF("portrait", "pt", "a4");
+    const data = document.querySelector("#pdf");
+    pdf.html(data).then(() => {
+      pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
+    });
+  };
 
 
   useEffect(() => {
@@ -76,7 +87,7 @@ export default function Status() {
       <div className="status">
         <div className='content'>
           <div className='contentOne'>
-              <div className='st-content'>
+              <div className='st-content' id="pdf">
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
@@ -92,7 +103,7 @@ export default function Status() {
                 </Steps>
               </div>
               {/* <a href="#" type='submit'>Get your Grama Certificate</a> */}
-              <Link to="#">Get your Grama Certificate</Link>
+              <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
           </div>
           <div className='contentOne'>
