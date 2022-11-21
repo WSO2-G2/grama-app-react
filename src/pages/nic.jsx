@@ -33,7 +33,7 @@ export default function NIC() {
 
     const submitID = () => {
       
-var newid=string(nic);
+var newid=nic.toString();
       console.log("Testing 2",state.email)
       const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     
