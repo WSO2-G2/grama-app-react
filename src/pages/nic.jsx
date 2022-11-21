@@ -49,7 +49,12 @@ var newid=nic.toString();
 
      
     }).then((response) => {
-      
+      if(response.data.body){
+        console.log("Malithi")
+      }
+      else{
+        console.log("hahahha")
+      }
    console.log(response.data.body)
   })
 
