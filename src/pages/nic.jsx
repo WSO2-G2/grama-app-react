@@ -75,12 +75,13 @@ export default function NIC(props) {
             setState(2)
             setCurrentStatus('error')
             setTimeout(() => {
-              this.props.history.push('/apply')
+           window.open('/apply')
               
             }, 2000);
 
           }
           else{
+
 
 
           }
