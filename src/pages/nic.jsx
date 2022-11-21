@@ -39,6 +39,7 @@ export default function NIC(props) {
   const submitID = () => {
 
     var newid = nic.toString();
+    localStorage.setItem('nic',newid)
     console.log("Testing 2", state.email)
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
 
