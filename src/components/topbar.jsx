@@ -62,6 +62,11 @@ export default function TopBar() {
             headers: {
               Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
             },
+            body: {
+              "userId": 4,
+              "nic": "123456789",
+              "name": "Joe Biden"
+            },
             method: "POST"
           })
         )
