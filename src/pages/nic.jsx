@@ -49,7 +49,8 @@ var newid=nic.toString();
 
      
     }).then((response) => {
-   console.log(response.data)
+      
+   console.log(response.data.body)
   })
 
    
