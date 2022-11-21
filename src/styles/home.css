@@ -17,6 +17,7 @@
 }
 
 .contentOne a{
+    display: block;
     margin: 10% 30% 10% 4%;
     font-size: 18px;
     font-weight: 350;
@@ -24,13 +25,24 @@
     padding: 5px;
     border-radius: 5px;
     border-color: coral;
+    background-color: coral;
+    width: 200px !important;
+    text-align: center;
     border-style: solid;
     text-decoration: none;
+    margin-top: -30px;
+    
     color: black;
+}
+
+.linkBut{
+    width: 600px;
 }
 
 .contentOne a:hover{
     background-color: coral;
+    color: #fff;
+    text-decoration:  none !important;
 }
 
 .contentOne p {
@@ -40,4 +52,44 @@
 
 .contentOne img{
     margin-right: 0px;
+}
+
+.nicInput{
+    width: 400px;
+    margin-top: 30px;
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.labelnic{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 100px;
+
+}
+
+.nicBut{
+    width: 200px;
+    margin: 20px;
+    background-color: coral;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 350;
+}
+.nicBut:hover{
+    background-color: coral !important;
+    text-decoration: none !important;
+    color: #fff;
+}
+
+.stepsDiv{
+    margin-left: 300px;
+}
+
+.steps{
+    margin-left: -100px;
+    margin-right: 200px;
 }

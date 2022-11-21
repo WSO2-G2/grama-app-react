@@ -27,17 +27,22 @@ export default function Options() {
           <div className='opt-content'>
 
             {/* <a href="/apply">Apply for the Grama Certificate &rarr;</a> */}
+
+            <Link to={"/nic"}>Apply for the Grama Certificate</Link>
+
             <Link to={"/apply"}>Apply for the Grama Certificate &rarr;</Link>
+
             {/* <a href="/status/appId">Check Status &rarr;</a> */}
             <Link to={"/status/appId"}>Check Status &rarr;</Link>
 
             {/* <a href="#">Help &rarr;</a> */}
             <Link to={"/help"}>Help &rarr;</Link>
 
+            
 
           </div>
           {/* <a href="/">Back</a> */}
-          <Link to={"/"}>Back</Link>
+          <Link to={"/"} className='backButton'>Back</Link>
 
         </div>
         <div className='contentOne'>
