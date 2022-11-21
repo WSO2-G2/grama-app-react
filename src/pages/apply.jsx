@@ -53,7 +53,7 @@ export default function Apply() {
                 <div className='aply-content'>
       <h2>Apply for the Grama Certificate</h2>
                     <label>NIC or Passport No</label>
-                    <input type="text" placeholder={nics} value={nics}/>
+                    <input type="text" value={nics} readOnly/>
                     <label>Current Address</label>
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
