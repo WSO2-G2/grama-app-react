@@ -72,7 +72,7 @@ export default function NIC() {
             setCurrentStatus('error')
             setTimeout(() => {
 
-              window.location('/apply')
+              window.location('https://grama-app-react.vercel.app/apply')
             }, 2000);
 
           }
