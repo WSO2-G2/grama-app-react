@@ -13,6 +13,7 @@ export default function NIC() {
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [currentStatus, setCurrentStatus] = useState('pending')
+ 
 
   const {
     state,
@@ -66,7 +67,21 @@ export default function NIC() {
 
 
         }).then((response) => {
-          console.log(response)
+          if(response.data.body=='true'){
+            setState(2)
+            setCurrentStatus('error')
+            setTimeout(() => {
+
+              window.location('/apply')
+            }, 2000);
+
+          }
+          else{
+
+
+          }
+
+         
         });
 
 
