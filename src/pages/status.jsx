@@ -24,7 +24,7 @@ export default function Status() {
   const [NIC, setNIC] = useState(msg);
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(msg);
-  const [addressCheck, setaddressCheck] = useState(msg);
+  const [addressCheck, setaddressCheck] = useState('pending');
   const [policeCheck, setpoliceCheck] = useState(msg);
   const {getBasicUserInfo} = useAuthContext();
 
@@ -99,14 +99,13 @@ export default function Status() {
               </div>
 
               <div className='stepsDiv'>
-              <Steps current={2} currentStatus="finish">
+              <Steps current={2} currentStatus="error">
                   <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" />
-                  <Steps.Item title="Address Check" icon={<Loader />}/>
-                 
+                  {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
+                  <Steps.Item title="Address Check" />}
                 </Steps>
               </div>
-              {/* <a href="#" type='submit'>Get your Grama Certificate</a> */}
               <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
           </div>
