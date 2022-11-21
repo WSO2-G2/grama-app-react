@@ -3,11 +3,18 @@ import '../styles/apply.css';
 import Side from '../components/side';
 import { Link } from 'react-router-dom';
 import {CloudinaryContext, Image} from 'cloudinary-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Apply() {
+  const [nics,setNic]=useState('');
 
+  useEffect(()=>{
+    const nic=localStorage.getItem('nic')
+    setNic(nic)
+  },[])
+
+ 
   const [file, setFile] = useState();
   const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
 
@@ -46,7 +53,7 @@ export default function Apply() {
                 <div className='aply-content'>
       <h2>Apply for the Grama Certificate</h2>
                     <label>NIC or Passport No</label>
-                    <input type="text" placeholder='NIC or Passport No'/>
+                    <input type="text" value={nics} readOnly/>
                     <label>Current Address</label>
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
