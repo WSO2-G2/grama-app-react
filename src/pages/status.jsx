@@ -76,7 +76,6 @@ export default function Status() {
       <div className="status">
         <div className='content'>
           <div className='contentOne'>
-            <form>
               <div className='st-content'>
                 <h2>Application Status</h2>
                 <p>Name</p>
@@ -92,8 +91,8 @@ export default function Status() {
                  
                 </Steps>
               </div>
-              <a href="#" type='submit'>Get your Grama Certificate</a>
-            </form>
+              {/* <a href="#" type='submit'>Get your Grama Certificate</a> */}
+              <Link to="#">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
           </div>
           <div className='contentOne'>
