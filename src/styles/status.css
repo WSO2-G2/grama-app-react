@@ -2,6 +2,7 @@
 
 *{
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 .status{
     display: flex;
@@ -32,7 +33,7 @@
     border-radius: 10px;
 }
 
-.status a{
+.status .content a{
     font-size: 18px;
     font-weight: 350;
     cursor: pointer;
@@ -47,10 +48,11 @@
     text-decoration: none;
     color: black;
     float: right;
+    
 }
 
-.status a:hover{
-    background-color: coral;
+.status .content a:hover{
+    color: #fff;
 }
 .stepsDiv{
     width: 600px;

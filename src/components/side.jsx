@@ -2,7 +2,11 @@ import logo from '../logo.svg';
 import '../styles/topbar.css'
 
 export default function Side() {
+
+  const imgStyle={
+    marginTop:'-50px'
+  }
   return (
-    <img src='/coverimg.jpg' width="800px" height="500px" />
+    <img src='/homePage.PNG' width="500px" height="500px" style={imgStyle}/>
   );
   }
