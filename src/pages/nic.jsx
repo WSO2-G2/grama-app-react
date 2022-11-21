@@ -72,7 +72,7 @@ export default function NIC() {
 
       }
       else {
-
+setCurrentStatus("error")
       }
 
     })
