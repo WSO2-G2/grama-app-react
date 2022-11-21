@@ -11,6 +11,8 @@ import { useAuthContext } from "@asgardeo/auth-react";
 
 export default function NIC() {
     const [nic, setNic] = useState('');
+    const [statestep,setState]=useState(0)
+    const [currentStatus,setCurrentStatus]=useState('pending')
 
     const {
       state,
@@ -30,7 +32,7 @@ export default function NIC() {
     }
 
     const submitID = () => {
-      console.log(nic)
+      
 var newid=string(nic);
       console.log("Testing 2",state.email)
       const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
@@ -65,7 +67,7 @@ var newid=string(nic);
                         <input type="text" id="fname" name="fname" onChange={changenic} value={nic} className='nicInput' placeholder='Please Enter your nic' />
                         <button onClick={submitID} className='nicBut'>Next</button>
                         <div className='stepsDiv'>
-                            <Steps current={0} currentStatus="pending">
+                            <Steps current={statestep} currentStatus={currentStatus}>
                                 <Steps.Item title="Identity Check"/>
                                 <Steps.Item title="Police Check" className='steps'/>
 
