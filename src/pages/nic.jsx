@@ -50,6 +50,7 @@ export default function NIC() {
 
 
     }).then((response) => {
+      console.log("ID Check",response.body.data)
       if (response.data.body == 'true') {
         setState(1);
         axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
