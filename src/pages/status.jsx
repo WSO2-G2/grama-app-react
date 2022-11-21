@@ -3,18 +3,22 @@ import TopBar from '../components/topbar';
 import Side from '../components/side';
 
 import { Steps } from 'rsuite';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { setRef } from '@mui/material';
 import { useAuthContext } from "@asgardeo/auth-react";
 
 import { jsPDF } from "jspdf";
+import { Loader } from 'rsuite';
 
 
 export default function Status() {
 
   let msg = "loading.."
+
+  let { appId } = useParams();
+  console.log(appId);
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
@@ -95,10 +99,10 @@ export default function Status() {
               </div>
 
               <div className='stepsDiv'>
-              <Steps current={2} currentStatus="error">
+              <Steps current={2} currentStatus="finish">
                   <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" />
-                  <Steps.Item title="Address Check" />
+                  <Steps.Item title="Address Check" icon={<Loader />}/>
                  
                 </Steps>
               </div>
