@@ -31,13 +31,13 @@ export default function NIC() {
 
     const submitID = () => {
       console.log(nic)
-
+var newid=string(nic);
       console.log("Testing 2",state.email)
       const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     
        axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId',{ 
        params:{
-        'nic':`990220115v`}, 
+        'nic':`${newid}`}, 
         
         headers: {
             'Authorization': `Bearer ${accessToken}`,
