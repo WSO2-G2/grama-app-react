@@ -94,7 +94,7 @@ export default function Status() {
               </div>
               <a href="#" type='submit'>Get your Grama Certificate</a>
             </form>
-            <a href="/options">Back</a>
+            <Link to={"/options"}>Back</Link>
           </div>
           <div className='contentOne'>
           <img src='/status.PNG' width="500px" height="500px" style={imgStyle}/>
