@@ -11,7 +11,7 @@ import SideNIC from '../components/sideNIC';
 import { useAuthContext } from "@asgardeo/auth-react";
 
 
-export default function NIC() {
+export default function NIC(props) {
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [currentStatus, setCurrentStatus] = useState('pending')
@@ -76,6 +76,7 @@ export default function NIC() {
             setCurrentStatus('error')
             setTimeout(() => {
               this.props.history.push('/apply')
+              
             }, 2000);
 
           }
