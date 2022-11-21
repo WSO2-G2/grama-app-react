@@ -2,7 +2,7 @@ import '../styles/home.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 
 import { Steps } from 'rsuite';
 
@@ -83,7 +83,8 @@ export default function NIC(props) {
           }
           else{
             setTimeout(() => {
-              window.open('/apply')
+              // window.open('/apply')
+              return <Redirect to="/apply" />
                  
                }, 2000);
 
