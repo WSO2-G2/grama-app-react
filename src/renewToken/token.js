@@ -34,3 +34,30 @@ export function isTokenExpired(){
     return decode.exp * 1000 < new Date().getTime();
 }
 
+export function checkTokenAndRenew(){
+    if(isTokenExpired()){
+        console.log("Token is expired")
+        const refreshToken = JSON.parse(localStorage.getItem("API_TOKEN")).refresh_token
+        return axios.post(
+          'https://sts.choreo.dev/oauth2/token',
+          new URLSearchParams({
+              'grant_type': 'refresh_token',
+              'refresh_token': refreshToken
+          }),
+          {
+              headers: {
+                  'Authorization': 'Basic VmhnbjEzMXI4Y0lnRjNTeGFlYlFzdnZJMnlBYTppZDFTVmI5WW5XNG4xUzM5cUpLRUhpU08wX1Vh'
+              }
+          }
+        )
+        // .then((response) => response.json())
+        .then((response) => {
+          console.log("Changing access token")
+          localStorage.setItem("API_TOKEN",JSON.stringify(response.data))
+        })
+        .catch((err) => console.log(err))
+      }          
+}
+
+
+
