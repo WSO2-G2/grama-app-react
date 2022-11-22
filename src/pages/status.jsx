@@ -1,6 +1,7 @@
 import '../styles/status.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
+import GramaCert from '../components/gramaCert';
 
 import { Steps } from 'rsuite';
 import { Link, useParams } from 'react-router-dom';
@@ -36,7 +37,8 @@ export default function Status() {
 
   const createPDF = () => {
     const pdf = new jsPDF("portrait", "pt", "a4");
-    const data = document.querySelector("#pdf");
+    // const data = document.querySelector("#pdf");
+    const data = <GramaCert/>
     pdf.html(data).then(() => {
       pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
     });
