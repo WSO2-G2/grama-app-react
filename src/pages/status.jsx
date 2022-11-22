@@ -119,10 +119,10 @@ export default function Status() {
     }
 
     try{
-      Promise.all([getIdCheck,getPoliceCheck,getAddressCheck]).then(res=>{
+      Promise.all([getIdCheck,getPoliceCheck]).then(res=>{
         console.log(accessToken);
         console.log(res);
-      })
+      });
     }catch(err){
       console.log(accessToken);
       console.log(err);
