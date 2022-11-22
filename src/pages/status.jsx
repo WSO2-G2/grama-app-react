@@ -37,8 +37,8 @@ export default function Status() {
 
   const createPDF = () => {
     const pdf = new jsPDF("portrait", "pt", "a4");
-    // const data = document.querySelector("#pdf");
-    const data = <GramaCert/>
+    const data = document.querySelector("#pdf1");
+    // const data = <GramaCert/>
     pdf.html(data).then(() => {
       pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
     });
@@ -129,13 +129,14 @@ export default function Status() {
       <TopBar />
       <div className="status">
         <div className='content'>
+        <div style={{'display':'none'}}><GramaCert/></div>
           <div className='contentOne'>
               <div className='st-content' id="pdf">
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
-              <div className='stepsDiv'>
-              <Steps current={statestep} >
+                <div className='stepsDiv'>
+                <Steps current={statestep} >
                   {/* <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" /> */}
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> : 
@@ -145,7 +146,7 @@ export default function Status() {
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
                   <Steps.Item title="Address Check" status={currentStatus}/>}
                 </Steps>
-              </div>
+                </div>
               </div>
               <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
