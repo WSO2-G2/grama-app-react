@@ -92,23 +92,20 @@ export default function NIC(props) {
               // return <Redirect to="/status/appId" />
               
 
-            },1000);
+            },2000);
 
           }
           else {
             console.log("Police check fails",response.data.body )
             setRedirect(true); 
-            if (true) {
-              return <Redirect to="/status/appId" />
-              console.log("hhhh")
-            }
            
-            console.log("Mhhahaha")
+           
+           
             setState(2)
-            console.log("Mhhahaha")
+            
             setTimeout(() => {
-              console.log("Hello")
-              
+             
+              history.push("/apply");
               
 
             },1000);
@@ -124,7 +121,7 @@ export default function NIC(props) {
       else {
         setCurrentStatus("error")
         setTimeout(() => {
-          return <Redirect to="/status/appId" />
+          history.push("/status/appId");
 
         }, 2000);
 
