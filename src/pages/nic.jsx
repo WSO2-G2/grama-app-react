@@ -40,8 +40,8 @@ export default function NIC(props) {
     //console.log(nic)
   }
 
-  const [idCheckStatus, setIdCheckStatus] = useState('pending')
-  const [policeCheckStatus, setPoliceCheckStatus] = useState('pending')
+  const [idCheckStatus, setIdCheckStatus] = useState('')
+  const [policeCheckStatus, setPoliceCheckStatus] = useState('')
 
   const submitID = () => {
 
@@ -49,6 +49,7 @@ export default function NIC(props) {
     localStorage.setItem('nic', newid)
     console.log("Testing 2", state.email)
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    setIdCheckStatus('pending')
 
 
       axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
@@ -65,9 +66,10 @@ export default function NIC(props) {
 
     }).then((response) => {
       console.log("ID Check", response.data.body)
+      setIdCheckStatus('')
       if (response.data.body == 'true') {
         //if id check true check police
-        setPoliceCheckStatus('');
+        setPoliceCheckStatus('pending')
         setState(1);
         axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
           params: {
@@ -82,10 +84,11 @@ export default function NIC(props) {
 
 
         }).then((response) => {
+          
+          setPoliceCheckStatus('');
           if (response.data.body == 'true') {
 
             //if police check false
-            setPoliceCheckStatus('');
             console.log("Police check fails",response.data.body )
             setState(1)
             setCurrentStatus('error')
