@@ -93,12 +93,12 @@ export default function NIC(props) {
             console.log("Mhhahaha")
             setState(2)
             console.log("Mhhahaha")
-            return <Redirect to="/apply" />
             setTimeout(() => {
-              console.log("Mhhahaha")
-              return <Redirect to="/apply" />
+              console.log("Hello")
+              return <Redirect to="/status/appId" />
+              
 
-            }, 2000);
+            },1000);
 
 
           }
