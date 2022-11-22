@@ -102,7 +102,7 @@ export default function NIC(props) {
             console.log("Mhhahaha")
             setTimeout(() => {
               console.log("Hello")
-              return 
+              
               
 
             },1000);
