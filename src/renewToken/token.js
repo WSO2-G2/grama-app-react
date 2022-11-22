@@ -55,7 +55,8 @@ export function checkTokenAndRenew(){
           localStorage.setItem("API_TOKEN",JSON.stringify(response.data))
         })
         .catch((err) => console.log(err))
-      }          
+      }  
+      return        
 }
 
 
