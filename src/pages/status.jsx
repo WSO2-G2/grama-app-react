@@ -133,9 +133,6 @@ export default function Status() {
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
-               
-              </div>
-
               <div className='stepsDiv'>
               <Steps current={statestep} currentStatus={currentStatus}>
                   <Steps.Item title="Identity Check" />
@@ -143,6 +140,7 @@ export default function Status() {
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
                   <Steps.Item title="Address Check" />}
                 </Steps>
+              </div>
               </div>
               <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
