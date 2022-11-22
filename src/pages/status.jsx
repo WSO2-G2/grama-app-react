@@ -18,8 +18,8 @@ export default function Status() {
 
   let msg = "loading.."
 
-  let { appId } = useParams();
-  console.log(appId);
+  let { nic } = useParams();
+  console.log(nic);
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
@@ -62,7 +62,7 @@ export default function Status() {
       let res=  axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?',{
         params: {
           // 'nic': `${newid}`
-          'nic':'string'
+          'nic': `${nic}`
         },
 
         headers: {
@@ -76,7 +76,7 @@ export default function Status() {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails',{
         params: {
           // 'nic': `${newid}`
-          'nic':'9'
+          'nic': `${nic}`
         },
 
         headers: {
@@ -90,7 +90,7 @@ export default function Status() {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?',{
         params: {
           // 'nic': `${newid}`
-          'nic':'987611421v'
+          'nic': `${nic}`
         },
 
         headers: {
@@ -101,11 +101,20 @@ export default function Status() {
     }
 
     try{
-      Promise.all([getIdCheck(),getPoliceCheck()]).then(res=>{
+      Promise.all([getIdCheck(),getPoliceCheck(),getAddressCheck()]).then(res=>{
         console.log(accessToken);
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
+        let addCheck = res[2].data.body;
+        if(addCheck === 'rejected' || addCheck === 'approved'){
+          setaddressCheck(addCheck);
+          if(addCheck === 'rejected'){
+            setCurrentStatus('error');
+          }else{
+            setState(3);
+          }
+        }
         if(idCheck === 'true'){
           setidentityCheck(true);
           setState(1);
@@ -129,7 +138,7 @@ export default function Status() {
 
     // doChecks();
 
-  }, []); 
+  }, [accessToken, nic]); 
   const imgStyle={
     marginTop:'-40px',
     marginLeft:'30px'
