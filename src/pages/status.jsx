@@ -93,10 +93,21 @@ export default function Status() {
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
-        (idCheck == 'true')? setidentityCheck(true) : setidentityCheck(false);
-        (policeCheck == 'true')? setpoliceCheck(true) : setpoliceCheck(false);
-        (idCheck == 'true')? setState(1) : setCurrentStatus('error');
-        (policeCheck == 'true')? setState(2) : setCurrentStatus('error');
+        if(idCheck === 'true'){
+          setidentityCheck(true);
+          setState(1);
+        }else{
+          setidentityCheck(false);
+          setCurrentStatus('error');
+        }
+        if(policeCheck === 'true'){
+          setpoliceCheck(true);
+          setState(2);
+        }else{
+          setpoliceCheck(false);
+          setState(2);
+          setCurrentStatus('error');
+        }
       });
     }catch(err){
       console.log(accessToken);
