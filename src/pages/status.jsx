@@ -24,9 +24,9 @@ export default function Status() {
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
   const [email, setemail] = useState();
-  const [identityCheck, setidentityCheck] = useState(msg);
+  const [identityCheck, setidentityCheck] = useState(false);
   const [addressCheck, setaddressCheck] = useState('pending');
-  const [policeCheck, setpoliceCheck] = useState(msg);
+  const [policeCheck, setpoliceCheck] = useState(false);
   const {getBasicUserInfo} = useAuthContext();
   const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
   //const accessToken = 'eyJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1YTlkODIwMC0wNTA4LTRkNTQtYmM0My0zN2U1MzhjMWM5MDJAY2FyYm9uLnN1cGVyIiwiaXNzIjoiaHR0cHM6XC9cL3N0cy5jaG9yZW8uZGV2OjQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOm51bGwsIm5hbWUiOiJhZGRyZXNzQ2hlY2siLCJjb250ZXh0IjoiXC83ZmEyYzFhNC0yYmZjLTRjNTgtODk5Zi05NTY5YzExMjE1MGJcL2RkcnFcL2FkZHJlc3NjaGVja1wvMS4wLjAiLCJwdWJsaXNoZXIiOiJjaG9yZW9fcHJvZF9hcGltX2FkbWluIiwidmVyc2lvbiI6IjEuMC4wIiwic3Vic2NyaXB0aW9uVGllciI6bnVsbH1dLCJleHAiOjE2NjkxNDQxODYsInRva2VuX3R5cGUiOiJJbnRlcm5hbEtleSIsImlhdCI6MTY2OTA4NDE4NiwianRpIjoiM2QxODdiZDQtYzQwNy00NjNhLWI0MmUtYzYwNGVmMjUzMGJkIn0.jfWHRHK0O_YFus0PThMYMCgrX0bxu9WGIQMKt57PmLWGUodHbd0H4Yqrp7Nob_weNnYjn4xDJjpu5baQA_WlQhzcv-iTk2WlFKUvoh9mzPDclLVPcGMZ8isxUQ7Xr12voLoS73lk3dfHr6AZR6_8u4BubCFMqwAt6NqFwebjmwbI3XE0aG7KXtpMd1_u_AfIDFOO30BhAPmfP8A7Mcf4YLy7PhNFLSHUKtVqQ3kNRZ5zlXjvZpO2tPtgih0DoqgRdyH0qaUwx9OAxZbhb9QuBdZ-MxBNsyhW-jRmkzfnRa7xDDE-mefccijB7zSZW6GBWxyigg7fGaZRmKiu5qu5flXNMg5WB1wa8zvgwNJwyh3dqxRUmPW18FFly-SokzrVC3gZ8WFW1sSFFBXeniSSKuNqIQGs_jd6014EYl5QlIMv5fSXdWFF2RxE0H5EHehruIJ5HdgH36WbTLGEXZ4UXS4P2aI95nxfAa04TkR-A9R-obhBszqAj8noi0RudxrC-4h7PWAWE1eBrSriTfIZMPnjfjpnhG5f77Rgms5yokepA79Kw9HXK8n1V-aOX3TJrb-Fq0U1KVL6XlyhBYNKiebEVFJl6ik_pKd7eBB4ipghqBRgziwLALvRSxj590vAoh957kgCM--GRgk4iRhhpWZucYvaAcnisN2Jrr5jCLo';
@@ -133,15 +133,15 @@ export default function Status() {
                 <p>Name</p>
                 <p>NIC or Passport No</p>
               <div className='stepsDiv'>
-              <Steps current={statestep} currentStatus={currentStatus}>
+              <Steps current={statestep} >
                   {/* <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" /> */}
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> : 
-                  <Steps.Item title="Identity Check" />}
+                  <Steps.Item title="Identity Check" status={currentStatus}/>}
                   {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> : 
-                  <Steps.Item title="Police Check" />}
+                  <Steps.Item title="Police Check" status={currentStatus}/>}
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
-                  <Steps.Item title="Address Check" />}
+                  <Steps.Item title="Address Check" status={currentStatus}/>}
                 </Steps>
               </div>
               </div>
