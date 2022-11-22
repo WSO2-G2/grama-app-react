@@ -9,6 +9,7 @@ import axios from 'axios';
 export default function Apply() {
   const [nics,setNic]=useState('');
 
+
   useEffect(()=>{
     const nic=localStorage.getItem('nic')
     setNic(nic)
@@ -16,9 +17,16 @@ export default function Apply() {
 
  
   const [file, setFile] = useState();
+  const [add1,setAdd1]=useState('')
+  const [add2,setAdd2]=useState('');
+  const [tpnumber,setTpnumber]=useState('');
+  const [proof,setProof]=useState('')
   const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
 
   async function handleSubmit(e){
+    console.log(add1)
+
+
     e.preventDefault();
     console.log(file[0]);
     console.log(file[0].name);
@@ -41,6 +49,28 @@ export default function Apply() {
       })
       .catch(err => console.log(err));
 
+
+      const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+      axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
+        params: {
+          'nic': `${nics}`,
+          'address':`${add1}+ " " ${add2}`,
+          'image':`${imgURL}`,
+          'status':`Pending`,
+          'phone':`${tpnumber}`
+        },
+
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+
+        }
+
+
+
+      }).then((response) => {
+        console.log(response.data)
+      })
+
   }
 
   return (
@@ -54,10 +84,13 @@ export default function Apply() {
       <h2>Apply for the Grama Certificate</h2>
                     <label>NIC or Passport No</label>
                     <input type="text" value={nics} readOnly/>
-                    <label>Telephone Number</label>
-                    <input type="text" placeholder='Telephone Number'/>
+                    <label>Mobile Number</label>
+                    <input type="text" placeholder='Mobile Number' onChange={(e)=>{setTpnumber(e.target.value)}}/>
                     <label>Current Address</label>
-                    <input type="text" placeholder='Address'/>
+                    <input type="text" placeholder='Address Line 1' onChange={(e)=>{setAdd1(e.target.value)}}/>
+                  
+                    <input type="text" placeholder='Address Line 2' onChange={(e)=>{setAdd2(e.target.value)}}/>
+                    
                     <label>Address Proof</label>
                     <input type="file" accept="image/png" onChange={(e)=>{setFile(e.target.files)}}/>
                 {/* <CloudinaryContext cloudName="dwb3ufwzf">
