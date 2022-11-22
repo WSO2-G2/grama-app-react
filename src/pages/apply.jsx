@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuthContext } from "@asgardeo/auth-react";
 
 export default function Apply() {
   const [nics, setNic] = useState('');
@@ -15,6 +16,15 @@ export default function Apply() {
     setNic(nic)
   }, [])
 
+  const {
+    state,
+    signIn,
+    signOut,
+    getBasicUserInfo,
+    getIDToken,
+    getDecodedIDToken,
+    on
+  } = useAuthContext();
 
   const [file, setFile] = useState();
   const [add1, setAdd1] = useState('')
@@ -63,7 +73,8 @@ export default function Apply() {
         'address': `${add1}+ " " ${add2}`,
         'image': `${imgURL}`,
         'status': `Pending`,
-        'phone': `${tpnumber}`
+        'phone': `${tpnumber}`,
+        'email':`${state.email}`
       
     },{
      

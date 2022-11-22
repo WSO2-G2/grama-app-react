@@ -18,6 +18,7 @@ export default function NIC(props) {
   const [redirect, setRedirect] = useState(false);
   const [currentStatus, setCurrentStatus] = useState('pending')
   const [addressCheck, setAddressCheck] = useState('pending')
+  const [email,setEmail]=useState('')
 
 
 
