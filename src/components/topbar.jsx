@@ -76,7 +76,11 @@ export default function TopBar() {
                   }
               }
             )
-            .then((response) => localStorage.setItem("API_TOKEN",JSON.stringify(response)))
+            .then((response) => response.json())
+            .then((responseJSON) => {
+              console.log("Changing access token")
+              localStorage.setItem("API_TOKEN",JSON.stringify(responseJSON))
+            })
             .catch((err) => console.log(err))
           }          
           }
