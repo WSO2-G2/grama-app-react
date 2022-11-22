@@ -14,6 +14,7 @@ import { useAuthContext } from "@asgardeo/auth-react";
 export default function NIC(props) {
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
+  const [redirect, setRedirect] = useState(false);
   const [currentStatus, setCurrentStatus] = useState('pending')
 
 
@@ -81,7 +82,7 @@ export default function NIC(props) {
             setState(1)
             setCurrentStatus('error')
             setTimeout(() => {
-              console.log("Hello")
+             
               return <Redirect to="/status/appId" />
               
 
@@ -89,13 +90,18 @@ export default function NIC(props) {
 
           }
           else {
-            setState(1)
-            return <Redirect to="/apply" />
+            console.log("Police check fails",response.data.body )
+            setRedirect(true); 
+            if (redirect) return <Redirect to="/status/appId" />
+            console.log("Mhhahaha")
+            setState(2)
+            console.log("Mhhahaha")
             setTimeout(() => {
-             
-              return <Redirect to="/apply" />
+              console.log("Hello")
+              return 
+              
 
-            }, 2000);
+            },1000);
 
 
           }
