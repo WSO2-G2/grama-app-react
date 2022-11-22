@@ -54,6 +54,8 @@ export default function Apply() {
       <h2>Apply for the Grama Certificate</h2>
                     <label>NIC or Passport No</label>
                     <input type="text" value={nics} readOnly/>
+                    <label>Telephone Number</label>
+                    <input type="text" placeholder='Telephone Number'/>
                     <label>Current Address</label>
                     <input type="text" placeholder='Address'/>
                     <label>Address Proof</label>
