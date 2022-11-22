@@ -15,9 +15,9 @@ export default function NIC(props) {
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [currentStatus, setCurrentStatus] = useState('pending')
-  
 
- 
+
+
 
   const {
     state,
@@ -39,7 +39,7 @@ export default function NIC(props) {
   const submitID = () => {
 
     var newid = nic.toString();
-    localStorage.setItem('nic',newid)
+    localStorage.setItem('nic', newid)
     console.log("Testing 2", state.email)
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
 
@@ -56,8 +56,9 @@ export default function NIC(props) {
 
 
     }).then((response) => {
-      console.log("ID Check",response.data.body)
+      console.log("ID Check", response.data.body)
       if (response.data.body == 'true') {
+        //if id check true check police
         setState(1);
         axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
           params: {
@@ -72,36 +73,42 @@ export default function NIC(props) {
 
 
         }).then((response) => {
-          if(response.data.body=='true'){
-            setState(2)
+          if (response.data.body == 'true') {
+
+            //if police check false
+
+            console.log("Police check fails",response.data.body )
+            setState(1)
             setCurrentStatus('error')
             setTimeout(() => {
-           window.open('/status/appId')
+              return <Redirect to="/status/appId" />
               
+
+            },1000);
+
+          }
+          else {
+            setState(1)
+            setTimeout(() => {
+             
+              return <Redirect to="/apply" />
+
             }, 2000);
 
-          }
-          else{
-            setTimeout(() => {
-              // window.open('/apply')
-              return <Redirect to="/apply" />
-                 
-               }, 2000);
-
 
           }
 
-         
+
         });
 
 
       }
       else {
-setCurrentStatus("error")
-setTimeout(() => {
-  window.open('/status/appId')
-     
-   }, 2000);
+        setCurrentStatus("error")
+        setTimeout(() => {
+          return <Redirect to="/status/appId" />
+
+        }, 2000);
 
       }
 
