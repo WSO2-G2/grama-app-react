@@ -84,7 +84,7 @@ export default function NIC(props) {
               return <Redirect to="/status/appId" />
               
 
-            }, 3000);
+            },1000);
 
           }
           else {
