@@ -59,21 +59,7 @@ export default function TopBar() {
         })
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
-        // .then(() =>
-        //   fetch("https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord", {
-        //     headers: {
-        //       Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
-        //     },
-        //     body: {
-        //       "userId": 4,
-        //       "nic": "123456789",
-        //       "name": "Joe Biden"
-        //     },
-        //     method: "POST",
-        //     mode:"no-cors"
-        //   })
-        // )S
-        // .then((response) => console.log(response))
+        .then(()=>{
           console.log("Testing 2",state.email)
           const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
           // console.log("Acess",accessToken)
@@ -91,10 +77,29 @@ export default function TopBar() {
               'Authorization': `Bearer ${accessToken}`,
             }
           })
-          .then((response) => {
-            console.log(response.data)
-          })
-          .catch((err) => {console.log("acess token failed!!");console.log(err)})
+        })
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((err) => {console.log("acess token failed!!");console.log(err)})
+        
+        // .then(() =>
+        //   fetch("https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord", {
+        //     headers: {
+        //       Authorization: "Bearer " + JSON.parse(localStorage.getItem("API_TOKEN")).access_token
+        //     },
+        //     body: {
+        //       "userId": 4,
+        //       "nic": "123456789",
+        //       "name": "Joe Biden"
+        //     },
+        //     method: "POST",
+        //     mode:"no-cors"
+        //   })
+        // )S
+        // .then((response) => console.log(response))
+          
+          
         // .catch((err) => {console.log("An error has occurred ...."); console.log(err);})
   
 
