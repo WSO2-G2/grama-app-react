@@ -2,6 +2,7 @@ import '../styles/home.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { useLocation, Redirect } from 'react-router-dom';
 
 import { Loader, Steps } from 'rsuite';
@@ -13,6 +14,7 @@ import { checkTokenAndRenew } from '../renewToken/token';
 
 
 export default function NIC(props) {
+  let history = useHistory();
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [redirect, setRedirect] = useState(false);
@@ -86,8 +88,8 @@ export default function NIC(props) {
             setState(1)
             setCurrentStatus('error')
             setTimeout(() => {
-             
-              return <Redirect to="/status/appId" />
+              history.push("/status/appId");
+              // return <Redirect to="/status/appId" />
               
 
             },1000);
