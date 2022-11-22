@@ -1,7 +1,6 @@
 import '../styles/status.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
-import GramaCert from '../components/gramaCert';
 
 import { Steps } from 'rsuite';
 import { Link, useParams } from 'react-router-dom';
@@ -36,12 +35,24 @@ export default function Status() {
   const [currentStatus, setCurrentStatus] = useState('pending');
 
   const createPDF = () => {
-    const pdf = new jsPDF("portrait", "pt", "a4");
-    const data = document.querySelector("#pdf1");
-    // const data = <GramaCert/>
-    pdf.html(data).then(() => {
-      pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
-    });
+    var doc = new jsPDF()
+    doc.setCreationDate(new Date())
+    doc.setFontSize(22)
+    doc.text(20, 20, 'Grama Certificate')
+    doc.moveTo(0,20)
+    doc.setFontSize(12)
+    doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', {maxWidth:'150'})
+    doc.text(20, 70, 'Name : ', {maxWidth:'150'})
+    doc.text(20, 80, 'NIC : ', {maxWidth:'150'})
+    doc.text(20, 90, 'Address : ', {maxWidth:'150'})
+    doc.text(20, 110, `Identity Check : ${(identityCheck)?'Verified & Validated':'Unidentified Identity'}`, {maxWidth:'150'})
+    doc.text(20, 120, `Police Check : ${(policeCheck)?'Verified & No Crimes found':'Identified with Crimes on the Police records'}`, {maxWidth:'150'})
+    doc.text(20, 130, `Address Check : ${addressCheck}`, {maxWidth:'150'})
+    doc.text(20, 160, 'I cereby certify that the Identity, Police and Address check of the above specified person has been verified.', {maxWidth:'150'})
+    doc.text(20, 180, 'Grama Niledari', {maxWidth:'150'})
+    doc.setFontSize(10)
+    doc.text(20, 250, `Generated on ${(new Date().toJSON().slice(0,10))} `, {maxWidth:'150',align:'left'})
+    doc.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
   };
 
 
@@ -129,7 +140,6 @@ export default function Status() {
       <TopBar />
       <div className="status">
         <div className='content'>
-        <div style={{'display':'none'}}><GramaCert/></div>
           <div className='contentOne'>
               <div className='st-content' id="pdf">
                 <h2>Application Status</h2>
