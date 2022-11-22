@@ -3,7 +3,7 @@ import '../styles/topbar.css'
 import { useAuthContext } from "@asgardeo/auth-react";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { isTokenExpired, renewToken } from '../renewToken/token';
+import { checkTokenAndRenew, isTokenExpired, renewToken } from '../renewToken/token';
 
 
 export default function TopBar() {
@@ -59,42 +59,20 @@ export default function TopBar() {
         })
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
-        .then(()=>{
-          if(isTokenExpired()){
-            console.log("Token is expired")
-            const refreshToken = JSON.parse(localStorage.getItem("API_TOKEN")).refresh_token
-            return axios.post(
-              'https://sts.choreo.dev/oauth2/token',
-              new URLSearchParams({
-                  'grant_type': 'refresh_token',
-                  'refresh_token': refreshToken
-              }),
-              {
-                  headers: {
-                      'Authorization': 'Basic VmhnbjEzMXI4Y0lnRjNTeGFlYlFzdnZJMnlBYTppZDFTVmI5WW5XNG4xUzM5cUpLRUhpU08wX1Vh'
-                  }
-              }
-            )
-            // .then((response) => response.json())
-            .then((response) => {
-              console.log("Changing access token")
-              localStorage.setItem("API_TOKEN",JSON.stringify(response.data))
-            })
-            .catch((err) => console.log(err))
-          }          
-          }
+        .then(()=>
+          checkTokenAndRenew()
         )
         .then(() => {
           const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-          // return axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord',
-          // { "userId": 111,
-          //   "nic": "testing user 111",
-          //   "name": "user 111"}, 
-          // {
-          //   headers: {
-          //     'Authorization': `Bearer ${accessToken}`,
-          //   }
-          // })
+          return axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord',
+          { "userId": 987,
+            "nic": "testing user 987",
+            "name": "user 987"}, 
+          {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+            }
+          })
           return "MSG"
         })
         .then((response) => {
