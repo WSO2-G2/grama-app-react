@@ -35,7 +35,7 @@ export function isTokenExpired(){
 }
 
 export function checkTokenAndRenew(){
-    if(isTokenExpired()){
+    if(!isTokenExpired()){
         console.log("Token is expired")
         const refreshToken = JSON.parse(localStorage.getItem("API_TOKEN")).refresh_token
         return axios.post(
