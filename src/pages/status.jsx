@@ -48,10 +48,10 @@ export default function Status() {
     doc.text(20, 110, `Identity Check : ${(identityCheck)?'Verified & Validated':'Unidentified Identity'}`, {maxWidth:'150'})
     doc.text(20, 120, `Police Check : ${(policeCheck)?'Verified & No Crimes found':'Identified with Crimes on the Police records'}`, {maxWidth:'150'})
     doc.text(20, 130, `Address Check : ${addressCheck}`, {maxWidth:'150'})
-    doc.text(20, 160, 'I cereby certify that the Identity, Police and Address check of the above specified person has been verified.', {maxWidth:'150'})
+    doc.text(20, 160, 'I hereby certify that the Identity, Police and Address check of the above specified person has been verified.', {maxWidth:'150'})
     doc.text(20, 180, 'Grama Niledari', {maxWidth:'150'})
     doc.setFontSize(10)
-    doc.text(20, 200, `Generated on ${(new Date().toJSON().slice(0,10))} `, {maxWidth:'150',align:'left'})
+    doc.text(20, 250, `Generated on ${(new Date().toJSON().slice(0,10))} `, {maxWidth:'150',align:'left'})
     doc.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
   };
 
