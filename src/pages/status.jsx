@@ -51,7 +51,7 @@ export default function Status() {
     doc.text(20, 160, 'I cereby certify that the Identity, Police and Address check of the above specified person has been verified.', {maxWidth:'150'})
     doc.text(20, 180, 'Grama Niledari', {maxWidth:'150'})
     doc.setFontSize(10)
-    doc.text(20, 250, `Generated on ${(new Date().toJSON().slice(0,10))} `, {maxWidth:'150',align:'left'})
+    doc.text(20, 200, `Generated on ${(new Date().toJSON().slice(0,10))} `, {maxWidth:'150',align:'left'})
     doc.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
   };
 
@@ -136,9 +136,8 @@ export default function Status() {
     }
     
 
-    // doChecks();
+  }, [accessToken, nic]);
 
-  }, [accessToken, nic]); 
   const imgStyle={
     marginTop:'-40px',
     marginLeft:'30px'
@@ -156,8 +155,6 @@ export default function Status() {
                 <p>NIC or Passport No</p>
                 <div className='stepsDiv'>
                 <Steps current={statestep} >
-                  {/* <Steps.Item title="Identity Check" />
-                  <Steps.Item title="Police Check" /> */}
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> : 
                   <Steps.Item title="Identity Check" status={currentStatus}/>}
                   {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> : 
