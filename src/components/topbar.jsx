@@ -59,25 +59,25 @@ export default function TopBar() {
         })
         .then((response) => response.json())
         .then((resJson) => localStorage.setItem("API_TOKEN",JSON.stringify(resJson)))
-        .then(()=>
-          checkTokenAndRenew()
-        )
-        .then(() => {
-          const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-          return axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord',
-          { "userId": 987,
-            "nic": "testing user 987",
-            "name": "user 987"}, 
-          {
-            headers: {
-              'Authorization': `Bearer ${accessToken}`,
-            }
-          })
-          return "MSG"
-        })
-        .then((response) => {
-          console.log(response)
-        })
+        // .then(()=>
+        //   checkTokenAndRenew()
+        // )
+        // .then(() => {
+        //   const accessToken=JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+        //   return axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/addRecord',
+        //   { "userId": 987,
+        //     "nic": "testing user 987",
+        //     "name": "user 987"}, 
+        //   {
+        //     headers: {
+        //       'Authorization': `Bearer ${accessToken}`,
+        //     }
+        //   })
+        //   return "MSG"
+        // })
+        // .then((response) => {
+        //   console.log(response)
+        // })
         .catch((err) => {console.log("acess token failed!!");console.log(err)})
         
         // .then(() =>

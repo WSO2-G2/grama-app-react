@@ -9,6 +9,7 @@ import { Loader, Steps } from 'rsuite';
 import axios from 'axios';
 import SideNIC from '../components/sideNIC';
 import { useAuthContext } from "@asgardeo/auth-react";
+import { checkTokenAndRenew } from '../renewToken/token';
 
 
 export default function NIC(props) {
@@ -43,9 +44,10 @@ export default function NIC(props) {
     var newid = nic.toString();
     localStorage.setItem('nic', newid)
     console.log("Testing 2", state.email)
-    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).data.access_token;
+    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
 
-    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
+
+      axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
       params: {
         'nic': `${newid}`
       },

@@ -50,13 +50,14 @@ export function checkTokenAndRenew(){
               }
           }
         )
-        // .then((response) => response.json())
         .then((response) => {
           console.log("Changing access token")
           localStorage.setItem("API_TOKEN",JSON.stringify(response.data))
+          console.log(JSON.parse(localStorage.getItem("API_TOKEN")).access_token)
         })
         .catch((err) => console.log(err))
-      }          
+      }  
+      return        
 }
 
 
