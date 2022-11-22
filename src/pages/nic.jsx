@@ -81,6 +81,7 @@ export default function NIC(props) {
             setState(1)
             setCurrentStatus('error')
             setTimeout(() => {
+              console.log("Hello")
               return <Redirect to="/status/appId" />
               
 
@@ -89,6 +90,7 @@ export default function NIC(props) {
           }
           else {
             setState(1)
+            return <Redirect to="/apply" />
             setTimeout(() => {
              
               return <Redirect to="/apply" />
