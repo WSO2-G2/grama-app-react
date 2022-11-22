@@ -3,24 +3,39 @@ import TopBar from '../components/topbar';
 import Side from '../components/side';
 
 import { Steps } from 'rsuite';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { setRef } from '@mui/material';
 import { useAuthContext } from "@asgardeo/auth-react";
+
+import { jsPDF } from "jspdf";
+import { Loader } from 'rsuite';
 
 
 export default function Status() {
 
   let msg = "loading.."
 
+  let { appId } = useParams();
+  console.log(appId);
+
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(msg);
-  const [addressCheck, setaddressCheck] = useState(msg);
+  const [addressCheck, setaddressCheck] = useState('pending');
   const [policeCheck, setpoliceCheck] = useState(msg);
   const {getBasicUserInfo} = useAuthContext();
+
+
+  const createPDF = () => {
+    const pdf = new jsPDF("portrait", "pt", "a4");
+    const data = document.querySelector("#pdf");
+    pdf.html(data).then(() => {
+      pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
+    });
+  };
 
 
   useEffect(() => {
@@ -76,8 +91,7 @@ export default function Status() {
       <div className="status">
         <div className='content'>
           <div className='contentOne'>
-            <form>
-              <div className='st-content'>
+              <div className='st-content' id="pdf">
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
@@ -88,12 +102,11 @@ export default function Status() {
               <Steps current={2} currentStatus="error">
                   <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" />
-                  <Steps.Item title="Address Check" />
-                 
+                  {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
+                  <Steps.Item title="Address Check" />}
                 </Steps>
               </div>
-              <a href="#" type='submit'>Get your Grama Certificate</a>
-            </form>
+              <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
           </div>
           <div className='contentOne'>
