@@ -90,6 +90,7 @@ export default function NIC(props) {
           }
           else {
             setState(1)
+            return <Redirect to="/apply" />
             setTimeout(() => {
              
               return <Redirect to="/apply" />
