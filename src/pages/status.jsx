@@ -37,8 +37,8 @@ export default function Status() {
 
   const createPDF = () => {
     const pdf = new jsPDF("portrait", "pt", "a4");
-    // const data = document.querySelector("#pdf");
-    const data = <GramaCert/>
+    const data = document.querySelector("#pdf1");
+    // const data = <GramaCert/>
     pdf.html(data).then(() => {
       pdf.save(`gramaCertificate_${(new Date().toJSON().slice(0,10))}.pdf`);
     });
@@ -127,6 +127,7 @@ export default function Status() {
   return (
     <>
       <TopBar />
+      <div style={{'display':'none'}}><GramaCert/></div>
       <div className="status">
         <div className='content'>
           <div className='contentOne'>
