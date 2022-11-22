@@ -80,7 +80,7 @@ export default function Status() {
     // }
 
     const getIdCheck = () => {
-      return axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?',{
+      let res=  axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?',{
         params: {
           // 'nic': `${newid}`
           'nic':'9'
@@ -90,10 +90,11 @@ export default function Status() {
           'Authorization': `Bearer ${accessToken}`,
         }
       })
+      return res;
     }
 
     const getPoliceCheck = () => {
-      return axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails',{
+      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails',{
         params: {
           // 'nic': `${newid}`
           'nic':'987611421v'
@@ -103,10 +104,11 @@ export default function Status() {
           'Authorization': `Bearer ${accessToken}`,
         }
       })
+      return res;
     }
 
     const getAddressCheck = () => {
-      return axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?',{
+      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?',{
         params: {
           // 'nic': `${newid}`
           'nic':'987611421v'
@@ -116,6 +118,7 @@ export default function Status() {
           'Authorization': `Bearer ${accessToken}`,
         }
       })
+      return res;
     }
 
     try{
