@@ -80,7 +80,7 @@ export default function Status() {
     // }
 
     try{
-      axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-dev.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?',{
+      axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?',{
         params: {
           // 'nic': `${newid}`
           'nic':'9'
@@ -91,9 +91,11 @@ export default function Status() {
 
         }
       }).then(res=>{
+        console.log(accessToken);
         console.log(res);
       })
     }catch(err){
+      console.log(accessToken);
       console.log(err);
     }
     
