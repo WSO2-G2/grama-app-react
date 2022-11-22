@@ -137,7 +137,7 @@ export default function Status() {
             <Link to={"/options"}>Back</Link>
           </div>
           <div className='contentOne'>
-          <img src='/status.PNG' width="500px" height="500px" style={imgStyle}/>
+          <img src='/status.png' width="500px" height="500px" style={imgStyle}/>
           </div>
 
         </div>

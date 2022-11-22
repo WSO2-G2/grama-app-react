@@ -4,7 +4,7 @@ import Side from '../components/side';
 import { useState } from 'react';
 import { useLocation, Redirect } from 'react-router-dom';
 
-import { Steps } from 'rsuite';
+import { Loader, Steps } from 'rsuite';
 
 import axios from 'axios';
 import SideNIC from '../components/sideNIC';
@@ -16,6 +16,7 @@ export default function NIC(props) {
   const [statestep, setState] = useState(0)
   const [redirect, setRedirect] = useState(false);
   const [currentStatus, setCurrentStatus] = useState('pending')
+  const [addressCheck, setAddressCheck] = useState('pending')
 
 
 
@@ -144,8 +145,8 @@ export default function NIC(props) {
               <Steps current={statestep} currentStatus={currentStatus}>
                 <Steps.Item title="Identity Check" />
                 <Steps.Item title="Police Check" className='steps' />
-
-
+                {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
+                  <Steps.Item title="Address Check" />}
               </Steps>
             </div>
           </div>
