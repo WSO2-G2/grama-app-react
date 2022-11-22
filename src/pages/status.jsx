@@ -127,16 +127,16 @@ export default function Status() {
   return (
     <>
       <TopBar />
-      <div style={{'display':'none'}}><GramaCert/></div>
       <div className="status">
         <div className='content'>
+        <div style={{'display':'none'}}><GramaCert/></div>
           <div className='contentOne'>
               <div className='st-content' id="pdf">
                 <h2>Application Status</h2>
                 <p>Name</p>
                 <p>NIC or Passport No</p>
-              <div className='stepsDiv'>
-              <Steps current={statestep} >
+                <div className='stepsDiv'>
+                <Steps current={statestep} >
                   {/* <Steps.Item title="Identity Check" />
                   <Steps.Item title="Police Check" /> */}
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> : 
@@ -146,7 +146,7 @@ export default function Status() {
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
                   <Steps.Item title="Address Check" status={currentStatus}/>}
                 </Steps>
-              </div>
+                </div>
               </div>
               <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
