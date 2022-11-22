@@ -92,7 +92,11 @@ export default function NIC(props) {
           else {
             console.log("Police check fails",response.data.body )
             setRedirect(true); 
-            if (redirect) return <Redirect to="/status/appId" />
+            if (redirect) {
+              return <Redirect to="/status/appId" />
+              console.log("hhhh")
+            }
+           
             console.log("Mhhahaha")
             setState(2)
             console.log("Mhhahaha")
