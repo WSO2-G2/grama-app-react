@@ -145,8 +145,8 @@ export default function NIC(props) {
               <Steps current={statestep} currentStatus={currentStatus}>
                 <Steps.Item title="Identity Check" />
                 <Steps.Item title="Police Check" className='steps' />
-                {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
-                  <Steps.Item title="Address Check" />}
+                {(addressCheck === 'pending') ? <Steps.Item title="Address Check"  className='steps' icon={<Loader />}/> : 
+                  <Steps.Item title="Address Check"  className='steps'/>}
               </Steps>
             </div>
           </div>

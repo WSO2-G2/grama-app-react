@@ -105,7 +105,6 @@ export default function Status() {
           setState(2);
         }else{
           setpoliceCheck(false);
-          setState(2);
           setCurrentStatus('error');
         }
       });
@@ -135,8 +134,12 @@ export default function Status() {
                 <p>NIC or Passport No</p>
               <div className='stepsDiv'>
               <Steps current={statestep} currentStatus={currentStatus}>
-                  <Steps.Item title="Identity Check" />
-                  <Steps.Item title="Police Check" />
+                  {/* <Steps.Item title="Identity Check" />
+                  <Steps.Item title="Police Check" /> */}
+                  {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> : 
+                  <Steps.Item title="Identity Check" />}
+                  {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> : 
+                  <Steps.Item title="Police Check" />}
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
                   <Steps.Item title="Address Check" />}
                 </Steps>
