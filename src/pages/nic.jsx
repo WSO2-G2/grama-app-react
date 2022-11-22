@@ -78,7 +78,7 @@ export default function NIC(props) {
             //if police check false
 
             console.log("Police check fails",response.data.body )
-            setState(2)
+            setState(1)
             setCurrentStatus('error')
             setTimeout(() => {
               return <Redirect to="/status/appId" />
@@ -88,7 +88,7 @@ export default function NIC(props) {
 
           }
           else {
-            setState(2)
+            setState(1)
             setTimeout(() => {
              
               return <Redirect to="/apply" />
