@@ -122,7 +122,7 @@ export default function Status() {
     }
 
     try{
-      Promise.all([getIdCheck,getPoliceCheck]).then(res=>{
+      Promise.all([getIdCheck(),getPoliceCheck()]).then(res=>{
         console.log(accessToken);
         console.log(res);
       });
