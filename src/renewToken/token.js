@@ -50,7 +50,6 @@ export function checkTokenAndRenew(){
               }
           }
         )
-        // .then((response) => response.json())
         .then((response) => {
           console.log("Changing access token")
           localStorage.setItem("API_TOKEN",JSON.stringify(response.data))
