@@ -89,6 +89,7 @@ export default function NIC(props) {
 
           }
           else {
+            console.log("Police check fails",response.data.body )
             setState(1)
             return <Redirect to="/apply" />
             setTimeout(() => {
