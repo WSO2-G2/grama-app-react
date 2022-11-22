@@ -58,14 +58,15 @@ export default function Apply() {
   const sendPost = () => {
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
-      params: {
+    
         'nic': `${nics}`,
         'address': `${add1}+ " " ${add2}`,
         'image': `${imgURL}`,
         'status': `Pending`,
         'phone': `${tpnumber}`
-      },
-
+      
+    },{
+     
       headers: {
         'Authorization': `Bearer ${accessToken}`,
 
