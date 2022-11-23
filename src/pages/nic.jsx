@@ -4,6 +4,8 @@ import Side from '../components/side';
 import { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useLocation, Redirect } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { Loader, Steps } from 'rsuite';
 
@@ -14,6 +16,7 @@ import { checkTokenAndRenew } from '../renewToken/token';
 
 
 export default function NIC(props) {
+  const MySwal = withReactContent(Swal)
   let history = useHistory();
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
@@ -61,6 +64,18 @@ export default function NIC(props) {
       }
     }).then((response) => {
 console.log(response.data)
+
+if(response.data){
+  Swal.fire({
+    icon: 'error',
+    title: 'You have a pending request',
+    text: 'Please check the request status from the main menu',
+    // footer: '<a href="">Why do I have this issue?</a>'
+  }).then(()=>{
+    window.location.href = "/apply"
+  })
+
+}
     })
 
     // axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
