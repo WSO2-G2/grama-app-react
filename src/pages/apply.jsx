@@ -1,4 +1,8 @@
 import TopBar from '../components/topbar';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+
 import '../styles/apply.css';
 import Side from '../components/side';
 import { Link } from 'react-router-dom';
@@ -8,9 +12,10 @@ import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
 
 export default function Apply() {
+ 
   const [nics, setNic] = useState('');
 
-
+  const MySwal = withReactContent(Swal)
   useEffect(() => {
     const nic = localStorage.getItem('nic')
     setNic(nic)
@@ -66,27 +71,37 @@ export default function Apply() {
   }
 
   const sendPost = () => {
-    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
+
+    // const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    // axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
     
-        'nic': `${nics}`,
-        'address': `${add1}+ " " ${add2}`,
-        'image': `${imgURL}`,
-        'status': `Pending`,
-        'phone': `${tpnumber}`,
-        'email':`${state.email}`
+    //     'nic': `${nics}`,
+    //     'address': `${add1}+ " " ${add2}`,
+    //     'image': `${imgURL}`,
+    //     'status': `Pending`,
+    //     'phone': `${tpnumber}`,
+    //     'email':`${state.email}`
       
-    },{
+    // },{
      
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
+    //   headers: {
+    //     'Authorization': `Bearer ${accessToken}`,
 
-      }
+    //   }
 
 
 
-    }).then((response) => {
-      console.log(response.data)
+    // }).then((response) => {
+    //   console.log(response.data)
+    // })
+    MySwal.fire({
+      title: <p>Hello World</p>,
+      didOpen: () => {
+        // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+        MySwal.showLoading()
+      },
+    }).then(() => {
+      return MySwal.fire(<p>Shorthand works too</p>)
     })
   }
 
