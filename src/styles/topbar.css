@@ -57,3 +57,15 @@
     text-decoration: none;
     color: black;
 }
+
+.loginbutoon{
+    background-color: coral;
+    border: none;
+    width: 200px;
+    border-radius: 10px;
+    height: 40px;
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 0px;
+}
