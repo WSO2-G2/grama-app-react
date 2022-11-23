@@ -180,8 +180,11 @@ export default function Status() {
               <p>NIC or Passport No</p>
               <div className='stepsDiv'>
                 <Steps current={statestep} >
-                  {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
-                    <Steps.Item title="Identity Check" status={currentStatus} />}
+                  {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
+                  {(idCheckStatus != 'pending') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
+                    <Steps.Item title="Identity Check" status={currentStatus} />)}
+                  {/* {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
+                    <Steps.Item title="Identity Check" status={currentStatus} />} */}
                   {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
                   {(policeCheckStatus != 'pending') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />)}
