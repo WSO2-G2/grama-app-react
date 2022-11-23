@@ -12,12 +12,26 @@ import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
 
 export default function Apply() {
- 
+
   const [nics, setNic] = useState('');
 
   const MySwal = withReactContent(Swal)
   useEffect(() => {
     const nic = localStorage.getItem('nic')
+    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
+      params: {
+        'nic': `${nics}`
+      },
+
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+
+      }
+    }).then((response) => {
+      console.log(response.data)
+      setName(response.data.user)
+    })
     setNic(nic)
   }, [])
 
@@ -33,7 +47,7 @@ export default function Apply() {
 
   const [file, setFile] = useState();
   const [add1, setAdd1] = useState('')
-  const [name,setName]=useState('')
+  const [name, setName] = useState('')
   const [add2, setAdd2] = useState('');
   const [tpnumber, setTpnumber] = useState('');
   const [proof, setProof] = useState('')
@@ -74,34 +88,21 @@ export default function Apply() {
   }
 
   const sendPost = () => {
-    console.log(nics,add1,add2,imgURL,tpnumber,state.email)
+    console.log(nics, add1, add2, imgURL, tpnumber, state.email)
 
-    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
-      params: {
-        'nic': `${nics}`
-      },
 
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-
-      }
-    }).then((response)=>{
-console.log(response.data)
-setName(response.data.user)
-    })
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
-    
-        'nic': `${nics}`,
-        'address': `${add1} ${add2}`,
-        'image': `${imgURL}`,
-        'status': `Pending`,
-        'phone': `${tpnumber}`,
-        'email':`${state.email}`,
-        'name':`${name}`
-      
-    },{
-     
+
+      'nic': `${nics}`,
+      'address': `${add1} ${add2}`,
+      'image': `${imgURL}`,
+      'status': `Pending`,
+      'phone': `${tpnumber}`,
+      'email': `${state.email}`,
+      'name': `${name}`
+
+    }, {
+
       headers: {
         'Authorization': `Bearer ${accessToken}`,
 
@@ -110,24 +111,24 @@ setName(response.data.user)
 
 
     })
-    .then((response) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Form Submitted Sucessfully',
-        text: 'Stay tuned!',
-        // footer: '<a href="">Why do I have this issue?</a>'
-      }).then(()=>{
-        window.location.href = "/options"
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Form Submitted Sucessfully',
+          text: 'Stay tuned!',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        }).then(() => {
+          window.location.href = "/options"
+        })
+        console.log(response.data)
       })
-      console.log(response.data)
-    })
-   
+
   }
 
   useEffect(() => {
     if (!file) {
-        setLocalImg('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0')
-        return
+      setLocalImg('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0')
+      return
     }
 
     const objectUrl = URL.createObjectURL(file[0])
