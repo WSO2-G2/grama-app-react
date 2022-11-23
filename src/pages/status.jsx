@@ -29,7 +29,7 @@ export default function Status() {
   const [policeCheck, setpoliceCheck] = useState(false);
   const { getBasicUserInfo } = useAuthContext();
   const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-  
+
   const [statestep, setState] = useState(0);
   const [currentStatus, setCurrentStatus] = useState('pending');
   const [idCheckStatus, setIdCheckStatus] = useState('pending')
@@ -62,6 +62,23 @@ export default function Status() {
 
   useEffect(() => {
 
+
+
+
+  }, [accessToken, NIC]);
+
+
+
+  const imgStyle = {
+    marginTop: '-40px',
+    marginLeft: '30px'
+  }
+
+  const [nic, setNic] = useState('');
+  const [stylediv, setStyle] = useState('styleNormal')
+  const submitID = () => {
+    setStyle('sucessStyle')
+
     const getIdCheck = () => {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?', {
         params: {
@@ -81,10 +98,7 @@ export default function Status() {
     const getPoliceCheck = () => {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
         params: {
-          // 'nic': `${newid}`
-
           'nic': `${NIC}`
-
         },
 
         headers: {
@@ -150,21 +164,6 @@ export default function Status() {
       console.log(accessToken);
       console.log(err);
     }
-
-
-  }, [accessToken, NIC]);
-
-
-
-  const imgStyle = {
-    marginTop: '-40px',
-    marginLeft: '30px'
-  }
-
-  const [nic, setNic] = useState('');
-  const [stylediv, setStyle] = useState('styleNormal')
-  const submitID = () => {
-    setStyle('sucessStyle')
 
   }
 
