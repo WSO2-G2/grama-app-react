@@ -111,7 +111,7 @@ export default function Apply() {
         return
     }
 
-    const objectUrl = URL.createObjectURL(file)
+    const objectUrl = URL.createObjectURL(file[0])
     setImgURL(objectUrl)
 
     // free memory when ever this component is unmounted
