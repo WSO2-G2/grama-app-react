@@ -76,7 +76,7 @@ export default function Apply() {
     console.log(nics,add1,add2,imgURL,tpnumber,state.email)
 
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestavailable', {
+    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
       params: {
         'nic': `${nics}`
       },
