@@ -100,7 +100,7 @@ export default function Apply() {
         text: 'Stay tuned!',
         // footer: '<a href="">Why do I have this issue?</a>'
       }).then(()=>{
-        window.location.href = "/apply"
+        window.location.href = "/options"
       })
       console.log(response.data)
     })
@@ -117,7 +117,7 @@ export default function Apply() {
     setLocalImg(objectUrl)
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
+    // return () => URL.revokeObjectURL(objectUrl)
   }, [file])
 
   return (
@@ -146,7 +146,7 @@ export default function Apply() {
                   </div>
                 </CloudinaryContext> */}
                 <div>
-                  <img src={imgURL} width="50" />
+                  <img src={localImg} width="50" />
                 </div>
               </div>
               {/* <a href="#" type='submit'>Apply</a> */}
