@@ -18,8 +18,8 @@ export default function Status() {
 
   let msg = "loading.."
 
-  let { appId } = useParams();
-  console.log(appId);
+  let { nicp } = useParams();
+  console.log(nic);
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
@@ -41,6 +41,8 @@ export default function Status() {
     doc.text(20, 20, 'Grama Certificate')
     doc.moveTo(0, 20)
     doc.setFontSize(12)
+
+
     doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', { maxWidth: '150' })
     doc.text(20, 70, 'Name : ', { maxWidth: '150' })
     doc.text(20, 80, 'NIC : ', { maxWidth: '150' })
@@ -48,8 +50,9 @@ export default function Status() {
     doc.text(20, 110, `Identity Check : ${(identityCheck) ? 'Verified & Validated' : 'Unidentified Identity'}`, { maxWidth: '150' })
     doc.text(20, 120, `Police Check : ${(policeCheck) ? 'Verified & No Crimes found' : 'Identified with Crimes on the Police records'}`, { maxWidth: '150' })
     doc.text(20, 130, `Address Check : ${addressCheck}`, { maxWidth: '150' })
-    doc.text(20, 160, 'I cereby certify that the Identity, Police and Address check of the above specified person has been verified.', { maxWidth: '150' })
+    doc.text(20, 160, 'I hereby certify that the Identity, Police and Address check of the above specified person has been verified.', { maxWidth: '150' })
     doc.text(20, 180, 'Grama Niledari', { maxWidth: '150' })
+
     doc.setFontSize(10)
     doc.text(20, 250, `Generated on ${(new Date().toJSON().slice(0, 10))} `, { maxWidth: '150', align: 'left' })
     doc.save(`gramaCertificate_${(new Date().toJSON().slice(0, 10))}.pdf`);
@@ -62,7 +65,9 @@ export default function Status() {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?', {
         params: {
           // 'nic': `${newid}`
-          'nic': 'string'
+
+          'nic': `${nic}`
+
         },
 
         headers: {
@@ -76,7 +81,9 @@ export default function Status() {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
         params: {
           // 'nic': `${newid}`
-          'nic': '9'
+
+          'nic': `${nic}`
+
         },
 
         headers: {
@@ -90,7 +97,9 @@ export default function Status() {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?', {
         params: {
           // 'nic': `${newid}`
-          'nic': '987611421v'
+
+          'nic': `${nic}`
+
         },
 
         headers: {
@@ -100,43 +109,58 @@ export default function Status() {
       return res;
     }
 
+
     try {
-      Promise.all([getIdCheck(), getPoliceCheck()]).then(res => {
+      Promise.all([getIdCheck(), getPoliceCheck(), getAddressCheck()]).then(res => {
+
         console.log(accessToken);
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
+
         if (idCheck === 'true') {
-          setidentityCheck(true);
-          setState(1);
-        } else {
-          setidentityCheck(false);
-          setCurrentStatus('error');
-        }
-        if (policeCheck === 'true') {
-          setpoliceCheck(true);
-          setState(2);
-        } else {
-          setpoliceCheck(false);
-          setCurrentStatus('error');
-        }
-      });
-    } catch (err) {
+
+          let addCheck = res[2].data.body;
+          if (addCheck === 'rejected' || addCheck === 'approved') {
+            setaddressCheck(addCheck);
+            if (addCheck === 'rejected') {
+              setCurrentStatus('error');
+            } else {
+              setState(3);
+            }
+          }
+          if (idCheck === 'true') {
+
+            setidentityCheck(true);
+            setState(1);
+          } else {
+            setidentityCheck(false);
+            setCurrentStatus('error');
+          }
+          if (policeCheck === 'true') {
+            setpoliceCheck(true);
+            setState(2);
+          } else {
+            setpoliceCheck(false);
+            setCurrentStatus('error');
+          }
+        }})} catch (err) {
       console.log(accessToken);
       console.log(err);
     }
 
 
-    // doChecks();
+  }, [accessToken, nic]);
 
-  }, []);
+
+
   const imgStyle = {
     marginTop: '-40px',
     marginLeft: '30px'
   }
 
-  const [nic,setNic]=useState('');
-  const submitID=()=>{
+  const [nic, setNic] = useState('');
+  const submitID = () => {
 
   }
   return (
@@ -144,7 +168,7 @@ export default function Status() {
       <TopBar />
       <div className="status">
         <div>
-        <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
+          <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
           <button onClick={submitID} className='nicBut'>Next</button>
         </div>
         <div className='content'>
@@ -155,14 +179,13 @@ export default function Status() {
               <p>NIC or Passport No</p>
               <div className='stepsDiv'>
                 <Steps current={statestep} >
-                  {/* <Steps.Item title="Identity Check" />
-                  <Steps.Item title="Police Check" /> */}
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                     <Steps.Item title="Identity Check" status={currentStatus} />}
                   {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />}
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />} /> :
                     <Steps.Item title="Address Check" status={currentStatus} />}
+
                 </Steps>
               </div>
             </div>
