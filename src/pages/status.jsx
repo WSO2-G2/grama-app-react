@@ -182,8 +182,8 @@ export default function Status() {
                 <Steps current={statestep} >
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                     <Steps.Item title="Identity Check" status={currentStatus} />}
-                  {(policeCheckStatus === 'pending') && <Steps.Item title="Address Check" icon={<Loader />} />}
-                  {(policeCheckStatus !== 'pending') && (policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+                  {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
+                  {(policeCheckStatus != 'pending') && (policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />}
                   {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />} */}
