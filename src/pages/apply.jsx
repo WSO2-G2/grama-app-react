@@ -62,6 +62,7 @@ export default function Apply() {
       .then(res => res.json())
       .then(res => {
         setImgURL(res.url);
+        console.log("Emaiiaia")
         sendPost();
       })
       .catch(err => console.log(err));
