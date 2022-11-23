@@ -30,7 +30,7 @@ export default function Apply() {
       }
     }).then((response) => {
       console.log(response.data)
-      setName(response.data.user)
+      setName(response.data.name)
     })
     setNic(nic)
   }, [])
