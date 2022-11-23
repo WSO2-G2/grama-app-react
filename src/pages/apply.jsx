@@ -62,6 +62,7 @@ export default function Apply() {
       .then(res => res.json())
       .then(res => {
         setImgURL(res.url);
+        console.log("Emaiiaia")
         sendPost();
       })
       .catch(err => console.log(err));
@@ -93,17 +94,18 @@ export default function Apply() {
 
 
 
-    }).then((response) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Form Submitted Sucessfully',
-        text: 'Stay tuned!',
-        // footer: '<a href="">Why do I have this issue?</a>'
-      }).then(()=>{
-        window.location.href = "/options"
-      })
-      console.log(response.data)
     })
+    // .then((response) => {
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Form Submitted Sucessfully',
+    //     text: 'Stay tuned!',
+    //     // footer: '<a href="">Why do I have this issue?</a>'
+    //   }).then(()=>{
+    //     window.location.href = "/options"
+    //   })
+    //   console.log(response.data)
+    // })
    
   }
 

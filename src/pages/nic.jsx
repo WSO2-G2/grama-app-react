@@ -4,6 +4,8 @@ import Side from '../components/side';
 import { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useLocation, Redirect } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { Loader, Steps } from 'rsuite';
 
@@ -14,6 +16,7 @@ import { checkTokenAndRenew } from '../renewToken/token';
 
 
 export default function NIC(props) {
+  const MySwal = withReactContent(Swal)
   let history = useHistory();
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
@@ -60,90 +63,106 @@ export default function NIC(props) {
 
       }
     }).then((response) => {
-console.log(response.data)
+      console.log(response.data)
+
+      if (response.data) {
+        Swal.fire({
+          icon: 'error',
+          title: 'You have a pending request',
+          text: 'Please check the request status from the main menu',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        }).then(() => {
+          window.location.href = "/options"
+        })
+
+      }
+      else {
+        axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
+          params: {
+            'nic': `${newid}`
+          },
+
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+
+          }
+
+
+
+        }).then((response) => {
+          console.log("ID Check", response.data.body)
+          setIdCheckStatus('')
+          if (response.data.body == 'true') {
+            //if id check true check police
+            setPoliceCheckStatus('pending')
+            setState(1);
+            axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
+              params: {
+                'nic': `${newid}`
+              },
+
+              headers: {
+                'Authorization': `Bearer ${accessToken}`,
+
+              }
+
+
+
+            }).then((response) => {
+
+              setPoliceCheckStatus('');
+              if (response.data.body == 'true') {
+
+                //if police check false
+                console.log("Police check fails", response.data.body)
+                setState(1)
+                setCurrentStatus('error')
+                setTimeout(() => {
+                  history.push("/status/appId");
+                  // return <Redirect to="/status/appId" />
+
+
+                }, 2000);
+
+              }
+              else {
+                console.log("Police check fails", response.data.body)
+                setRedirect(true);
+
+
+
+                setState(2)
+
+                setTimeout(() => {
+
+                  history.push("/apply");
+
+
+                }, 1000);
+
+
+              }
+
+
+            });
+
+
+          }
+          else {
+            setCurrentStatus("error")
+            setTimeout(() => {
+              history.push("/status/appId");
+
+            }, 2000);
+
+          }
+
+        })
+
+      }
     })
 
-    // axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
-    //   params: {
-    //     'nic': `${newid}`
-    //   },
 
-    //   headers: {
-    //     'Authorization': `Bearer ${accessToken}`,
-
-    //   }
-
-
-
-    // }).then((response) => {
-    //   console.log("ID Check", response.data.body)
-    //   setIdCheckStatus('')
-    //   if (response.data.body == 'true') {
-    //     //if id check true check police
-    //     setPoliceCheckStatus('pending')
-    //     setState(1);
-    //     axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
-    //       params: {
-    //         'nic': `${newid}`
-    //       },
-
-    //       headers: {
-    //         'Authorization': `Bearer ${accessToken}`,
-
-    //       }
-
-
-
-    //     }).then((response) => {
-
-    //       setPoliceCheckStatus('');
-    //       if (response.data.body == 'true') {
-
-    //         //if police check false
-    //         console.log("Police check fails", response.data.body)
-    //         setState(1)
-    //         setCurrentStatus('error')
-    //         setTimeout(() => {
-    //           history.push("/status/appId");
-    //           // return <Redirect to="/status/appId" />
-
-
-    //         }, 2000);
-
-    //       }
-    //       else {
-    //         console.log("Police check fails", response.data.body)
-    //         setRedirect(true);
-
-
-
-    //         setState(2)
-
-    //         setTimeout(() => {
-
-    //           history.push("/apply");
-
-
-    //         }, 1000);
-
-
-    //       }
-
-
-    //     });
-
-
-    //   }
-    //   else {
-    //     setCurrentStatus("error")
-    //     setTimeout(() => {
-    //       history.push("/status/appId");
-
-    //     }, 2000);
-
-    //   }
-
-    // })
 
 
 
