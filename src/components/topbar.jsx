@@ -123,10 +123,10 @@ export default function TopBar() {
               ? (
                 <div>
                   <ul>
-                    <li>{state.email}</li>
+                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); signOut(); }}>Logout</button></span></li>
                   </ul>
 
-                  <li><button onClick={() => { localStorage.removeItem("API_TOKEN"); signOut(); }}>Logout</button></li>
+                
                 </div>
               )
               : <button onClick={() => { signIn().then(res => console.log(res)) }} className='loginbutoon'>Login</button>
