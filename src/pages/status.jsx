@@ -123,30 +123,31 @@ export default function Status() {
         let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
-          if (addCheck === 'rejected' || addCheck === 'approved') {
-            setaddressCheck(addCheck);
-            if (addCheck === 'rejected') {
-              setCurrentStatus('error');
-            } else {
-              setState(3);
-            }
+        if (addCheck === 'rejected' || addCheck === 'approved') {
+          setaddressCheck(addCheck);
+          if (addCheck === 'rejected') {
+            setCurrentStatus('error');
+          } else {
+            setState(3);
           }
-          if (idCheck === 'true') {
+        }
+        if (idCheck === 'true') {
 
-            setidentityCheck(true);
-            setState(1);
-          } else {
-            setidentityCheck(false);
-            setCurrentStatus('error');
-          }
-          if (policeCheck === 'true') {
-            setpoliceCheck(true);
-            setState(2);
-          } else {
-            setpoliceCheck(false);
-            setCurrentStatus('error');
-          }
-        })} catch (err) {
+          setidentityCheck(true);
+          setState(1);
+        } else {
+          setidentityCheck(false);
+          setCurrentStatus('error');
+        }
+        if (policeCheck === 'true') {
+          setpoliceCheck(true);
+          setState(2);
+        } else {
+          setpoliceCheck(false);
+          setCurrentStatus('error');
+        }
+      })
+    } catch (err) {
       console.log(accessToken);
       console.log(err);
     }
@@ -162,18 +163,28 @@ export default function Status() {
   }
 
   const [nic, setNic] = useState('');
+  const [stylediv, setStyle] = useState('styleNormal')
   const submitID = () => {
+    setStyle('sucessStyle')
 
+  }
+
+  const styleNormal = {
+    opacity: '0.5'
+  }
+
+  const sucessStyle = {
+    opacity: '1'
   }
   return (
     <>
       <TopBar />
-      <div className="status">
+      <div className="status" style={stylediv}>
         <div className='content'>
-        <div className='idaddbar'>
-          <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
-          <button onClick={submitID} className='nicBut'>Next</button>
-        </div>
+          <div className='idaddbar'>
+            <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
+            <button onClick={submitID} className='nicBut'>Next</button>
+          </div>
           <div className='contentOne'>
             <div className='st-content' id="pdf">
               <h2>Application Status</h2>
