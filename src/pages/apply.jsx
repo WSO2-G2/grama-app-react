@@ -1,4 +1,8 @@
 import TopBar from '../components/topbar';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+
 import '../styles/apply.css';
 import Side from '../components/side';
 import { Link } from 'react-router-dom';
@@ -8,9 +12,10 @@ import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
 
 export default function Apply() {
+ 
   const [nics, setNic] = useState('');
 
-
+  const MySwal = withReactContent(Swal)
   useEffect(() => {
     const nic = localStorage.getItem('nic')
     setNic(nic)
@@ -66,6 +71,7 @@ export default function Apply() {
   }
 
   const sendPost = () => {
+
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
     
@@ -86,8 +92,17 @@ export default function Apply() {
 
 
     }).then((response) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted Sucessfully',
+        text: 'Stay tuned!',
+        // footer: '<a href="">Why do I have this issue?</a>'
+      }).then(()=>{
+        window.location.href = "/apply"
+      })
       console.log(response.data)
     })
+   
   }
 
   useEffect(() => {

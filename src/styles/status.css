@@ -60,3 +60,13 @@
     padding-top: 20px;
     margin-left: 45px;
 }
+
+.idaddbar{
+    display: flex;
+    height: 200px;
+}
+
+.nicBut{
+    height: 100px !important;
+    width: 200px;
+}
