@@ -70,7 +70,3 @@
     height: 100px !important;
     width: 200px;
 }
-.content{
-    display: flex;
-    flex-direction: column;
-}
