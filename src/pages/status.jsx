@@ -119,7 +119,8 @@ export default function Status() {
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
-        let addCheck = res[2].data.body;
+        // let addCheck = res[2].data.body;
+        let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
           if (addCheck === 'rejected' || addCheck === 'approved') {
