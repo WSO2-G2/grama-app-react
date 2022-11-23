@@ -75,6 +75,8 @@ export default function Status() {
   }
 
   const [nic, setNic] = useState('');
+  const [data, setData] = useState([]);
+  const [statetrue, setStatetrue] = useState(false)
   const [stylediv, setStyle] = useState('styleNormal')
   const submitID = () => {
     console.log("Hiiii")
@@ -143,7 +145,7 @@ export default function Status() {
     }
 
     try {
-      Promise.all([getIdCheck(), getPoliceCheck(),getnameDetails()]).then(res => {
+      Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails()]).then(res => {
 
         console.log(accessToken);
         console.log(res);
@@ -152,6 +154,9 @@ export default function Status() {
         let nameDetails = res[2].data;
         // let addCheck = res[2].data.body;
         console.log(nameDetails)
+
+        setStatetrue(true)
+        setData(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
@@ -187,7 +192,7 @@ export default function Status() {
   }
 
   const styleNormal = {
-    visibility:"hidden"
+    // visibility: "hidden"
   }
 
   const sucessStyle = {
@@ -204,29 +209,32 @@ export default function Status() {
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
               <button onClick={submitID} className='nicBut' >Next</button >
             </div>
-            <div className='st-content' id="pdf" style={styleNormal}>
-              <h2>Application Status</h2>
-              <p>Name</p>
-              <p>NIC or Passport No</p>
-              <div className='stepsDiv'>
-                <Steps current={statestep} >
-                  {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
-                  {(idCheckStatus === 'received') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
-                    <Steps.Item title="Identity Check" status={currentStatus} />)}
-                  {/* {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
-                    <Steps.Item title="Identity Check" status={currentStatus} />} */}
-                  {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
-                  {(policeCheckStatus === 'received') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
-                    <Steps.Item title="Police Check" status={currentStatus} />)}
-                  {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
-                    <Steps.Item title="Police Check" status={currentStatus} />} */}
-                  {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />} /> :
-                    <Steps.Item title="Address Check" status={currentStatus} />}
+            {setStatetrue &&
+              <div className='st-content' id="pdf" style={styleNormal}>
+                <h2>Application Status</h2>
+                <p>Name</p>
+                <p>NIC or Passport No</p>
+                <div className='stepsDiv'>
+                  <Steps current={statestep} >
+                    {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
+                    {(idCheckStatus === 'received') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
+                      <Steps.Item title="Identity Check" status={currentStatus} />)}
+                    {/* {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
+       <Steps.Item title="Identity Check" status={currentStatus} />} */}
+                    {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
+                    {(policeCheckStatus === 'received') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+                      <Steps.Item title="Police Check" status={currentStatus} />)}
+                    {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+       <Steps.Item title="Police Check" status={currentStatus} />} */}
+                    {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />} /> :
+                      <Steps.Item title="Address Check" status={currentStatus} />}
 
-                </Steps>
+                  </Steps>
+                </div>
+                <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
               </div>
-              <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
-            </div>
+            }
+
             {/* <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link> */}
             <Link to={"/options"}>Back</Link>
           </div>
