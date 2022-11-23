@@ -77,6 +77,7 @@ export default function Status() {
   const [nic, setNic] = useState('');
   const [stylediv, setStyle] = useState('styleNormal')
   const submitID = () => {
+    console.log("Hiiii")
     setStyle('sucessStyle')
 
     const getIdCheck = () => {
