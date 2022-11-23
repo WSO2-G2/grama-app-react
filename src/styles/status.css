@@ -65,3 +65,8 @@
     display: flex;
     height: 200px;
 }
+
+.nicBut{
+    height: 100px !important;
+    width: 200px;
+}

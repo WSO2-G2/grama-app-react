@@ -179,13 +179,13 @@ export default function Status() {
   return (
     <>
       <TopBar />
-      <div className="status" style={stylediv}>
+      <div className="status" >
         <div className='content'>
           <div className='idaddbar'>
-            <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
-            <button onClick={submitID} className='nicBut'>Next</button>
+            <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }}  className='inputid' />
+            <button onClick={submitID} className='nicBut'>Next</button >
           </div>
-          <div className='contentOne'>
+          <div className='contentOne' style={styleNormal}>
             <div className='st-content' id="pdf">
               <h2>Application Status</h2>
               <p>Name</p>
