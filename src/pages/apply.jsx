@@ -92,14 +92,15 @@ export default function Apply() {
 
 
     }).then((response) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted Sucessfully',
+        text: 'Stay tuned!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
       console.log(response.data)
     })
-    Swal.fire({
-      icon: 'success',
-      title: 'Form Submitted Sucessfully',
-      text: 'Stay tuned!',
-      footer: '<a href="">Why do I have this issue?</a>'
-    })
+   
   }
 
   return (
