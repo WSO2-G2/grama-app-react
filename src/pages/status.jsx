@@ -151,7 +151,7 @@ export default function Status() {
         let policeCheck = res[1].data.body;
         let nameDetails = res[2].data.body;
         // let addCheck = res[2].data.body;
-        console.lof(nameDetails)
+        console.log(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
