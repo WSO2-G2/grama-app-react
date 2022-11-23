@@ -98,7 +98,7 @@ export default function Apply() {
         text: 'Stay tuned!',
         // footer: '<a href="">Why do I have this issue?</a>'
       }).then(()=>{
-        window.location('/apply')
+        window.location.href = "/apply"
       })
       console.log(response.data)
     })
