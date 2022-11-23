@@ -96,7 +96,9 @@ export default function Apply() {
         icon: 'success',
         title: 'Form Submitted Sucessfully',
         text: 'Stay tuned!',
-        footer: '<a href="">Why do I have this issue?</a>'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      }).then(()=>{
+        window.location('/apply')
       })
       console.log(response.data)
     })
