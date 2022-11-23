@@ -211,11 +211,12 @@ export default function Status() {
             <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             <Link to={"/options"}>Back</Link>
           </div>
-          <div className='contentOne'>
-            <img src='/status.png' width="500px" height="500px" style={imgStyle} />
-          </div>
+          
 
         </div>
+        <div className='contentOne'>
+            <img src='/status.png' width="500px" height="500px" style={imgStyle} />
+          </div>
       </div>
     </>
   );
