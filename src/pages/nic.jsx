@@ -72,7 +72,7 @@ export default function NIC(props) {
           text: 'Please check the request status from the main menu',
           // footer: '<a href="">Why do I have this issue?</a>'
         }).then(() => {
-          window.location.href = "/apply"
+          window.location.href = "/options"
         })
 
       }
