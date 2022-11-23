@@ -183,7 +183,7 @@ export default function Status() {
           <div className='contentOne' style={sucessStyle}>
             <div className='idaddbar'>
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
-              <button onClick={submitID} className='nicBut'>Next</button >
+              <button onClick={submitID} className='nicBut' >Next</button >
             </div>
             <div className='st-content' id="pdf" style={styleNormal}>
               <h2>Application Status</h2>
