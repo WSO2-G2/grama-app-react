@@ -33,6 +33,7 @@ export default function Apply() {
 
   const [file, setFile] = useState();
   const [add1, setAdd1] = useState('')
+  const [name,setName]=useState('')
   const [add2, setAdd2] = useState('');
   const [tpnumber, setTpnumber] = useState('');
   const [proof, setProof] = useState('')
@@ -87,6 +88,7 @@ export default function Apply() {
       }
     }).then((response)=>{
 console.log(response.data)
+setName(response.data.user)
     })
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
     
@@ -95,7 +97,8 @@ console.log(response.data)
         'image': `${imgURL}`,
         'status': `Pending`,
         'phone': `${tpnumber}`,
-        'email':`${state.email}`
+        'email':`${state.email}`,
+        'name':`${name}`
       
     },{
      
