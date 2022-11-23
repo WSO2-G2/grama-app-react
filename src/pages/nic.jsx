@@ -147,6 +147,8 @@ export default function NIC(props) {
             {/* <label for="fname" className='labelnic'>Please Enter your nic</label> */}
             <br></br>
             <input type="text" id="fname" name="fname" onChange={changenic} value={nic} className='nicInput' placeholder='Please Enter your nic' />
+            <button onClick={submitID} className='nicButton'>Next</button>
+            {/* <Link onClick={submitID} className='nicBut' type='button'>Next</Link> */}
             
             <div className='stepsDiv'>
               <Steps current={statestep} currentStatus={currentStatus}>
@@ -158,7 +160,7 @@ export default function NIC(props) {
                   <Steps.Item title="Police Check" className='steps' />}
               </Steps>
             </div>
-            <Link onClick={submitID} className='nicBut' type='button'>Next</Link>
+           
             <Link to={"/options"}>Back</Link>
           </div>
 
