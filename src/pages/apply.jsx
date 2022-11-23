@@ -71,37 +71,38 @@ export default function Apply() {
   }
 
   const sendPost = () => {
+    console.log(nics,add1,add2,imgURL,tpnumber,state.email)
 
-    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
+    // const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    // axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
     
-        'nic': `${nics}`,
-        'address': `${add1}+ " " ${add2}`,
-        'image': `${imgURL}`,
-        'status': `Pending`,
-        'phone': `${tpnumber}`,
-        'email':`${state.email}`
+    //     'nic': `${nics}`,
+    //     'address': `${add1}+ " "+ ${add2}`,
+    //     'image': `${imgURL}`,
+    //     'status': `Pending`,
+    //     'phone': `${tpnumber}`,
+    //     'email':`${state.email}`
       
-    },{
+    // },{
      
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
+    //   headers: {
+    //     'Authorization': `Bearer ${accessToken}`,
 
-      }
+    //   }
 
 
 
-    }).then((response) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Form Submitted Sucessfully',
-        text: 'Stay tuned!',
-        // footer: '<a href="">Why do I have this issue?</a>'
-      }).then(()=>{
-        window.location.href = "/apply"
-      })
-      console.log(response.data)
-    })
+    // }).then((response) => {
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Form Submitted Sucessfully',
+    //     text: 'Stay tuned!',
+    //     // footer: '<a href="">Why do I have this issue?</a>'
+    //   }).then(()=>{
+    //     window.location.href = "/apply"
+    //   })
+    //   console.log(response.data)
+    // })
    
   }
 
