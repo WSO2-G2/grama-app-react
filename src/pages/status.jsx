@@ -19,7 +19,7 @@ export default function Status() {
   let msg = "loading.."
 
   let { nicp } = useParams();
-  console.log(nic);
+  console.log(nicp);
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState(msg);
@@ -170,7 +170,7 @@ export default function Status() {
       <TopBar />
       <div className="status">
         <div className='content'>
-        <div>
+        <div className='idaddbar'>
           <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
           <button onClick={submitID} className='nicBut'>Next</button>
         </div>
