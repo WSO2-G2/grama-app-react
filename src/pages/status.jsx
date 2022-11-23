@@ -33,6 +33,8 @@ export default function Status() {
 
   const [statestep, setState] = useState(0);
   const [currentStatus, setCurrentStatus] = useState('pending');
+  const [idCheckStatus, setIdCheckStatus] = useState('pending')
+  const [policeCheckStatus, setPoliceCheckStatus] = useState('pending')
 
   const createPDF = () => {
     var doc = new jsPDF()
@@ -117,10 +119,9 @@ export default function Status() {
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
-
-        if (idCheck === 'true') {
-
-          let addCheck = res[2].data.body;
+        let addCheck = res[2].data.body;
+        setIdCheckStatus('');
+        setPoliceCheckStatus('');
           if (addCheck === 'rejected' || addCheck === 'approved') {
             setaddressCheck(addCheck);
             if (addCheck === 'rejected') {
@@ -144,7 +145,7 @@ export default function Status() {
             setpoliceCheck(false);
             setCurrentStatus('error');
           }
-        }})} catch (err) {
+        })} catch (err) {
       console.log(accessToken);
       console.log(err);
     }
@@ -167,11 +168,11 @@ export default function Status() {
     <>
       <TopBar />
       <div className="status">
+        <div className='content'>
         <div>
           <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} />
           <button onClick={submitID} className='nicBut'>Next</button>
         </div>
-        <div className='content'>
           <div className='contentOne'>
             <div className='st-content' id="pdf">
               <h2>Application Status</h2>
@@ -181,8 +182,11 @@ export default function Status() {
                 <Steps current={statestep} >
                   {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                     <Steps.Item title="Identity Check" status={currentStatus} />}
-                  {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+                  {(policeCheckStatus === 'pending') && <Steps.Item title="Address Check" icon={<Loader />} />}
+                  {(policeCheckStatus !== 'pending') && (policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />}
+                  {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+                    <Steps.Item title="Police Check" status={currentStatus} />} */}
                   {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />} /> :
                     <Steps.Item title="Address Check" status={currentStatus} />}
 
