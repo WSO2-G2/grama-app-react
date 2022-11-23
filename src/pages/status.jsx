@@ -168,7 +168,7 @@ export default function Status() {
   }
 
   const styleNormal = {
-    opacity: '0.5'
+    visibility:"hidden"
   }
 
   const sucessStyle = {
@@ -185,7 +185,7 @@ export default function Status() {
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
               <button onClick={submitID} className='nicBut'>Next</button >
             </div>
-            <div className='st-content' id="pdf">
+            <div className='st-content' id="pdf" style={styleNormal}>
               <h2>Application Status</h2>
               <p>Name</p>
               <p>NIC or Passport No</p>
@@ -206,8 +206,9 @@ export default function Status() {
 
                 </Steps>
               </div>
+              <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
             </div>
-            <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
+            {/* <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link> */}
             <Link to={"/options"}>Back</Link>
           </div>
           {/* <div className='contentOne'>
