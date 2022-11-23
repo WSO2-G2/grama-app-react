@@ -45,8 +45,12 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    border-color: coral;
-    border-style: solid;
+    /* border-color: coral; */
+    /* border-style: solid; */
+}
+
+.topList li span{
+padding: 10px;
 }
 
 .topList li:hover{
