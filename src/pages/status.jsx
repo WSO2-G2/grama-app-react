@@ -120,8 +120,8 @@ export default function Status() {
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
         let addCheck = res[2].data.body;
-        setIdCheckStatus('');
-        setPoliceCheckStatus('');
+        setIdCheckStatus('received');
+        setPoliceCheckStatus('received');
           if (addCheck === 'rejected' || addCheck === 'approved') {
             setaddressCheck(addCheck);
             if (addCheck === 'rejected') {
@@ -181,12 +181,12 @@ export default function Status() {
               <div className='stepsDiv'>
                 <Steps current={statestep} >
                   {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
-                  {(idCheckStatus != 'pending') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
+                  {(idCheckStatus === 'received') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                     <Steps.Item title="Identity Check" status={currentStatus} />)}
                   {/* {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                     <Steps.Item title="Identity Check" status={currentStatus} />} */}
                   {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
-                  {(policeCheckStatus != 'pending') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
+                  {(policeCheckStatus === 'received') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />)}
                   {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                     <Steps.Item title="Police Check" status={currentStatus} />} */}
