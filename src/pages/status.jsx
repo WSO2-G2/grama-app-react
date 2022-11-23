@@ -19,7 +19,7 @@ export default function Status() {
   let msg = "loading.."
 
   let { nicp } = useParams();
-  console.log(nicp);
+  // console.log(nicp);
 
   const [name, setname] = useState(msg);
   const [NIC, setNIC] = useState('');
@@ -126,14 +126,32 @@ export default function Status() {
     }
 
 
+    const getnameDetails = () => {
+      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
+        params: {
+          // 'nic': `${newid}`
+
+          'nic': `${NIC}`
+
+        },
+
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        }
+      })
+      return res;
+    }
+
     try {
-      Promise.all([getIdCheck(), getPoliceCheck()]).then(res => {
+      Promise.all([getIdCheck(), getPoliceCheck(),getnameDetails()]).then(res => {
 
         console.log(accessToken);
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
+        let nameDetails = res[2].data.body;
         // let addCheck = res[2].data.body;
+        console.lof(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
