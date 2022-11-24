@@ -18,6 +18,13 @@ export default function Options() {
   //     console.log(response);
   //   });
   // },[])
+
+  const history = useHistory();
+  
+  if(!localStorage.getItem('state')){
+    history.push('/');
+  }
+
   return (
     <>
     <TopBar />

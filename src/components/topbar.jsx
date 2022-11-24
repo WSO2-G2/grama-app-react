@@ -28,6 +28,11 @@ export default function TopBar() {
       return;
     }
 
+    // if(!localStorage.getItem('state')){
+    //   const history = useHistory();
+    //   history.push('/');
+    // }
+
     (async () => {
       const basicUserInfo = await getBasicUserInfo();
       const idToken = await getIDToken();
@@ -42,6 +47,7 @@ export default function TopBar() {
 
       console.log(state);
       console.log(derivedState);
+      localStorage.setItem("state", state.isAuthenticated)
       console.log("+++++")
       console.log(idToken.split(".")[0] + idToken.split(".")[1] + idToken.split(".")[2])
       console.log("+++++")
