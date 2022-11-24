@@ -196,7 +196,7 @@ export default function Apply() {
                 </div>
               </div>
               {/* <a href="#" type='submit'>Apply</a> */}
-              <Link onClick={handleSubmit} >Apply</Link>
+              <Link to={"#"} onClick={handleSubmit} >Apply</Link>
             </form>
             {/* <a href="/options" className='backbtn'>Back</a> */}
             <Link to={"/options"}>Back</Link>
