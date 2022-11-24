@@ -4,6 +4,7 @@ import { useAuthContext } from "@asgardeo/auth-react";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { checkTokenAndRenew, isTokenExpired, renewToken } from '../renewToken/token';
+import { useHistory } from 'react-router-dom';
 
 
 export default function TopBar() {
@@ -19,7 +20,7 @@ export default function TopBar() {
   } = useAuthContext();
 
   const [derivedAuthenticationState, setDerivedAuthenticationState] = useState(null);
-
+  let history = useHistory();
 
   useEffect(() => {
 
