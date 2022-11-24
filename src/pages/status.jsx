@@ -52,8 +52,8 @@ export default function Status() {
 
 
     doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', { maxWidth: '150' })
-    doc.text(20, 70, 'Name : ', { maxWidth: '150' })
-    doc.text(20, 80, 'NIC : ', { maxWidth: '150' })
+    doc.text(20, 70, `Name : ${data.name}`, { maxWidth: '150' })
+    doc.text(20, 80, `NIC : ${NIC}`, { maxWidth: '150' })
     doc.text(20, 90, 'Address : ', { maxWidth: '150' })
     doc.text(20, 110, `Identity Check : ${(identityCheck) ? 'Verified & Validated' : 'Unidentified Identity'}`, { maxWidth: '150' })
     doc.text(20, 120, `Police Check : ${(policeCheck) ? 'Verified & No Crimes found' : 'Identified with Crimes on the Police records'}`, { maxWidth: '150' })
@@ -155,17 +155,29 @@ export default function Status() {
       return res;
     }
 
+    const getRequestDetails = ()=>{
+      return axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestdetails?',{
+        params: {
+          'nic': `${NIC}`
+        },
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        }
+      })
+    }
+
     try {
-      Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails()]).then(res => {
+      Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
 
         console.log(accessToken);
         console.log(res);
         let idCheck = res[0].data.body;
         let policeCheck = res[1].data.body;
         let nameDetails = res[2].data;
+        let requestDetails = res[3].data;
         // let addCheck = res[2].data.body;
         console.log(nameDetails.name)
-
+        console.log(nameDetails.address)
        
         setData(nameDetails)
         let addCheck = '';
