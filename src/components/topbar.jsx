@@ -24,6 +24,7 @@ export default function TopBar() {
   useEffect(() => {
 
     if (!state?.isAuthenticated) {
+      history.push("/");
       return;
     }
 

@@ -25,15 +25,15 @@ export default function Status() {
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
-  const [addressCheck, setaddressCheck] = useState('pending');
+  const [addressCheck, setaddressCheck] = useState('');
   const [policeCheck, setpoliceCheck] = useState(false);
   const { getBasicUserInfo } = useAuthContext();
   const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
 
   const [statestep, setState] = useState(0);
   const [currentStatus, setCurrentStatus] = useState('pending');
-  const [idCheckStatus, setIdCheckStatus] = useState('pending')
-  const [policeCheckStatus, setPoliceCheckStatus] = useState('pending')
+  const [idCheckStatus, setIdCheckStatus] = useState('')
+  const [policeCheckStatus, setPoliceCheckStatus] = useState('')
 
   const createPDF = () => {
     var doc = new jsPDF()
@@ -78,10 +78,14 @@ export default function Status() {
   const [data, setData] = useState([]);
   const [statetrue, setStatetrue] = useState(false)
   const [stylediv, setStyle] = useState('styleNormal')
+
   const submitID = () => {
     console.log("Hiiii")
     setStyle('sucessStyle')
 
+    setIdCheckStatus('pending');
+    setPoliceCheckStatus('pending');
+    
     const getIdCheck = () => {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?', {
         params: {
@@ -169,7 +173,6 @@ export default function Status() {
           }
         }
         if (idCheck === 'true') {
-
           setidentityCheck(true);
           setState(1);
         } else {
@@ -203,7 +206,6 @@ export default function Status() {
       <TopBar />
       <div className="status" >
         <div className='content'>
-
           <div className='contentOne' style={sucessStyle}>
             <div className='idaddbar'>
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
