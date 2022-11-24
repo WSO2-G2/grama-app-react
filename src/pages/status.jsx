@@ -22,7 +22,7 @@ export default function Status() {
   // console.log(nicp);
 
   const [name, setname] = useState(msg);
-  const [username,setusername]=useState('')
+  const [username, setusername] = useState('')
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
@@ -86,7 +86,7 @@ export default function Status() {
 
     setIdCheckStatus('pending');
     setPoliceCheckStatus('pending');
-    
+
     const getIdCheck = () => {
       let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?', {
         params: {
@@ -207,6 +207,7 @@ export default function Status() {
       <TopBar />
       <div className="status" >
         <div className='content'>
+          <h2>Application Status</h2>
           <div className='contentOne' style={sucessStyle}>
             <div className='idaddbar'>
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
@@ -214,7 +215,7 @@ export default function Status() {
             </div>
             {false &&
               <div className='st-content' id="pdf" style={styleNormal}>
-                <h2>Application Status</h2>
+
                 <p>Name</p><span>{username}</span>
                 <p>NIC or Passport No</p><span>{NIC}</span>
                 <div className='stepsDiv'>
