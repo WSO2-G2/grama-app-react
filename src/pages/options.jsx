@@ -30,7 +30,7 @@ export default function Options() {
 
             <Link to={"/nic"}>Apply for the Grama Certificate</Link>
 
-            <Link to={"/apply"}>Apply for the Grama Certificate &rarr;</Link>
+            {/* <Link to={"/apply"}>Apply for the Grama Certificate &rarr;</Link> */}
 
             {/* <a href="/status/appId">Check Status &rarr;</a> */}
             <Link to={"/status/appId"}>Check Status &rarr;</Link>

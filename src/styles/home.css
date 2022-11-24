@@ -73,8 +73,9 @@
 
 }
 
-.nicBut{
+.nicButton{
     width: 200px;
+    height: 40px !important;
     margin: 20px;
     background-color: coral;
     padding: 10px;
@@ -94,6 +95,7 @@
 }
 
 .steps{
-    margin-left: -100px;
+    margin-left: -5px;
     margin-right: 200px;
+    margin-bottom: 50px;
 }

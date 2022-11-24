@@ -45,15 +45,31 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    border-color: coral;
-    border-style: solid;
+    /* border-color: coral; */
+    /* border-style: solid; */
+}
+
+.topList li span{
+padding: 10px;
 }
 
 .topList li:hover{
-    background-color:coral;
+    /* background-color:coral; */
 }
 
 .topList a{
     text-decoration: none;
     color: black;
+}
+
+.loginbutoon{
+    background-color: coral;
+    border: none;
+    width: 200px;
+    border-radius: 10px;
+    height: 40px;
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 0px;
 }

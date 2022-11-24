@@ -2,7 +2,10 @@ import '../styles/home.css';
 import TopBar from '../components/topbar';
 import Side from '../components/side';
 import { useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import { useLocation, Redirect } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { Loader, Steps } from 'rsuite';
 
@@ -13,11 +16,14 @@ import { checkTokenAndRenew } from '../renewToken/token';
 
 
 export default function NIC(props) {
+  const MySwal = withReactContent(Swal)
+  let history = useHistory();
   const [nic, setNic] = useState('');
   const [statestep, setState] = useState(0)
   const [redirect, setRedirect] = useState(false);
   const [currentStatus, setCurrentStatus] = useState('pending')
   const [addressCheck, setAddressCheck] = useState('pending')
+  const [email, setEmail] = useState('')
 
 
 
@@ -34,10 +40,11 @@ export default function NIC(props) {
 
   const changenic = (e) => {
     setNic(e.target.value)
-
-
     //console.log(nic)
   }
+
+  const [idCheckStatus, setIdCheckStatus] = useState('')
+  const [policeCheckStatus, setPoliceCheckStatus] = useState('')
 
   const submitID = () => {
 
@@ -45,9 +52,8 @@ export default function NIC(props) {
     localStorage.setItem('nic', newid)
     console.log("Testing 2", state.email)
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-
-
-      axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
+    setIdCheckStatus('pending')
+    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestavailable', {
       params: {
         'nic': `${newid}`
       },
@@ -56,15 +62,22 @@ export default function NIC(props) {
         'Authorization': `Bearer ${accessToken}`,
 
       }
-
-
-
     }).then((response) => {
-      console.log("ID Check", response.data.body)
-      if (response.data.body == 'true') {
-        //if id check true check police
-        setState(1);
-        axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
+      console.log(response.data)
+
+      if (response.data) {
+        Swal.fire({
+          icon: 'error',
+          title: 'You have a pending request',
+          text: 'Please check the request status from the main menu',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        }).then(() => {
+          window.location.href = "/options"
+        })
+
+      }
+      else {
+        axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId', {
           params: {
             'nic': `${newid}`
           },
@@ -77,57 +90,79 @@ export default function NIC(props) {
 
 
         }).then((response) => {
+          console.log("ID Check", response.data.body)
+          setIdCheckStatus('')
           if (response.data.body == 'true') {
+            //if id check true check police
+            setPoliceCheckStatus('pending')
+            setState(1);
+            axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
+              params: {
+                'nic': `${newid}`
+              },
 
-            //if police check false
+              headers: {
+                'Authorization': `Bearer ${accessToken}`,
 
-            console.log("Police check fails",response.data.body )
-            setState(1)
-            setCurrentStatus('error')
-            setTimeout(() => {
-             
-              return <Redirect to="/status/appId" />
-              
+              }
 
-            },1000);
+
+
+            }).then((response) => {
+
+              setPoliceCheckStatus('');
+              if (response.data.body == 'true') {
+
+                //if police check false
+                console.log("Police check fails", response.data.body)
+                setState(1)
+                setCurrentStatus('error')
+                setTimeout(() => {
+                  history.push("/status/appId");
+                  // return <Redirect to="/status/appId" />
+
+
+                }, 2000);
+
+              }
+              else {
+                console.log("Police check fails", response.data.body)
+                setRedirect(true);
+
+
+
+                setState(2)
+
+                setTimeout(() => {
+
+                  history.push("/apply");
+
+
+                }, 1000);
+
+
+              }
+
+
+            });
+
 
           }
           else {
-            console.log("Police check fails",response.data.body )
-            setRedirect(true); 
-            if (true) {
-              return <Redirect to="/status/appId" />
-              console.log("hhhh")
-            }
-           
-            console.log("Mhhahaha")
-            setState(2)
-            console.log("Mhhahaha")
+            setCurrentStatus("error")
             setTimeout(() => {
-              console.log("Hello")
-              
-              
+              history.push("/status/appId");
 
-            },1000);
-
+            }, 2000);
 
           }
 
-
-        });
-
+        })
 
       }
-      else {
-        setCurrentStatus("error")
-        setTimeout(() => {
-          return <Redirect to="/status/appId" />
-
-        }, 2000);
-
-      }
-
     })
+
+
 
 
 
@@ -142,15 +177,21 @@ export default function NIC(props) {
             {/* <label for="fname" className='labelnic'>Please Enter your nic</label> */}
             <br></br>
             <input type="text" id="fname" name="fname" onChange={changenic} value={nic} className='nicInput' placeholder='Please Enter your nic' />
-            <button onClick={submitID} className='nicBut'>Next</button>
+            <button onClick={submitID} className='nicButton'>Next</button>
+            {/* <Link onClick={submitID} className='nicBut' type='button'>Next</Link> */}
+
             <div className='stepsDiv'>
               <Steps current={statestep} currentStatus={currentStatus}>
-                <Steps.Item title="Identity Check" />
-                <Steps.Item title="Police Check" className='steps' />
-                {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />}/> : 
-                  <Steps.Item title="Address Check" />}
+                {/* <Steps.Item title="Identity Check" />
+                <Steps.Item title="Police Check" className='steps' /> */}
+                {(idCheckStatus === 'pending') ? <Steps.Item title="Identity Check" icon={<Loader />} /> :
+                  <Steps.Item title="Identity Check" />}
+                {(policeCheckStatus === 'pending') ? <Steps.Item title="Police Check" className='steps' icon={<Loader />} /> :
+                  <Steps.Item title="Police Check" className='steps' />}
               </Steps>
             </div>
+
+            <Link to={"/options"}>Back</Link>
           </div>
 
           <div className='contentOne'>

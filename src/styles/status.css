@@ -60,3 +60,17 @@
     padding-top: 20px;
     margin-left: 45px;
 }
+
+.idaddbar{
+    display: flex;
+    height: 200px;
+}
+
+.nicBut{
+    height: 50px !important;
+    width: 200px;
+}
+.inputid{
+    width: 200px !important;
+    height: 50px !important;
+}
