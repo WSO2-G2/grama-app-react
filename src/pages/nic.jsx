@@ -34,6 +34,10 @@ export default function NIC(props) {
     getDecodedIDToken,
     on
   } = useAuthContext();
+  
+  if(!localStorage.getItem('state')){
+    history.push('/');
+  }
 
   const changenic = (e) => {
     setNic(e.target.value)
