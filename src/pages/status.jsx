@@ -12,6 +12,7 @@ import { useAuthContext } from "@asgardeo/auth-react";
 import { jsPDF } from "jspdf";
 import { Loader } from 'rsuite';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 
 export default function Status() {
@@ -54,7 +55,7 @@ export default function Status() {
     doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', { maxWidth: '150' })
     doc.text(20, 70, `Name : ${data.name}`, { maxWidth: '150' })
     doc.text(20, 80, `NIC : ${NIC}`, { maxWidth: '150' })
-    doc.text(20, 90, 'Address : ', { maxWidth: '150' })
+    doc.text(20, 90, `Address : ${requestData.address}`, { maxWidth: '150' })
     doc.text(20, 110, `Identity Check : ${(identityCheck) ? 'Verified & Validated' : 'Unidentified Identity'}`, { maxWidth: '150' })
     doc.text(20, 120, `Police Check : ${(policeCheck) ? 'Verified & No Crimes found' : 'Identified with Crimes on the Police records'}`, { maxWidth: '150' })
     doc.text(20, 130, `Address Check : ${addressCheck}`, { maxWidth: '150' })
@@ -66,16 +67,6 @@ export default function Status() {
     doc.save(`gramaCertificate_${(new Date().toJSON().slice(0, 10))}.pdf`);
   };
 
-
-  useEffect(() => {
-
-
-
-
-  }, [accessToken, NIC]);
-
-
-
   const imgStyle = {
     marginTop: '-40px',
     marginLeft: '30px'
@@ -83,6 +74,7 @@ export default function Status() {
 
   const [nic, setNic] = useState('');
   const [data, setData] = useState([]);
+  const [requestData, setRequestdata] = useState([]);
   const [statetrue, setStatetrue] = useState(false)
   const [stylediv, setStyle] = useState('styleNormal')
 
@@ -177,9 +169,9 @@ export default function Status() {
         let requestDetails = res[3].data;
         // let addCheck = res[2].data.body;
         console.log(nameDetails.name)
-        console.log(nameDetails.address)
-       
+        console.log(requestDetails.address)
         setData(nameDetails)
+        setRequestdata(requestDetails)
         let addCheck = '';
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
@@ -211,6 +203,15 @@ export default function Status() {
     } catch (err) {
       console.log(accessToken);
       console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'No pending request found',
+        text: 'Please enter a NIC of a valid pending request',
+      }).then(() => {
+        setIdCheckStatus('received');
+        setPoliceCheckStatus('received');
+        window.location.href = "/status"
+      })
     }
 
   }

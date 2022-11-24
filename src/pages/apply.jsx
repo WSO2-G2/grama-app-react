@@ -10,7 +10,9 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
-import LoadingScreen from '../react-loading-screen'
+import React from 'react'
+const LoadingScreen = require('react-loading-screen');
+
 
 
 export default function Apply() {
@@ -70,7 +72,8 @@ export default function Apply() {
   }, [])
 
   async function handleSubmit(e) {
-    <LoadingScreen
+    console.log("asd");
+    return <LoadingScreen
     loading={true}
     bgColor='#f1f1f1'
     spinnerColor='#9ee5f8'
@@ -194,7 +197,7 @@ export default function Apply() {
                 </div>
               </div>
               {/* <a href="#" type='submit'>Apply</a> */}
-              <Link onClick={handleSubmit} >Apply</Link>
+              <Link to={"#"} onClick={handleSubmit} >Apply</Link>
             </form>
             {/* <a href="/options" className='backbtn'>Back</a> */}
             <Link to={"/options"}>Back</Link>
