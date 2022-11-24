@@ -186,7 +186,7 @@ export default function Status() {
           setidentityCheck(false);
           setCurrentStatus('error');
         }
-        if (policeCheck === 'true') {
+        if (policeCheck === 'false') {
           setpoliceCheck(true);
           setState(2);
         } else {
