@@ -17,6 +17,12 @@ export default function Apply() {
 
   const MySwal = withReactContent(Swal)
   useEffect(() => {
+
+    if (!state?.isAuthenticated) {
+      history.push("/");
+      return;
+    }
+
     const nic = localStorage.getItem('nic')
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
