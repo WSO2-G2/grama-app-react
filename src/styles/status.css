@@ -73,4 +73,7 @@
 .inputid{
     width: 200px !important;
     height: 50px !important;
+    margin-left: 200px;
+    margin-right: 50px;
+
 }
