@@ -10,7 +10,9 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
-import LoadingScreen from '../react-loading-screen'
+import React from 'react'
+const LoadingScreen = require('react-loading-screen');
+
 
 
 export default function Apply() {
