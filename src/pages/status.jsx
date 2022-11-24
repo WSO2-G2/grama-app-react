@@ -159,7 +159,7 @@ export default function Status() {
         // let addCheck = res[2].data.body;
         console.log(nameDetails)
 
-        setStatetrue(true)
+        // setStatetrue(true)
         setData(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
