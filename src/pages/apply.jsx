@@ -73,7 +73,7 @@ export default function Apply() {
 
   async function handleSubmit(e) {
     console.log("asd");
-    <LoadingScreen
+    return <LoadingScreen
     loading={true}
     bgColor='#f1f1f1'
     spinnerColor='#9ee5f8'
