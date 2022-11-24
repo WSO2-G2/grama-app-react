@@ -218,7 +218,7 @@ export default function Status() {
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
 
-                <p>Name</p><span>{nameDetails.name}</span>
+                <p>Name</p><span>{data.name}</span>
                 <p>NIC or Passport No</p><span>{NIC}</span>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
