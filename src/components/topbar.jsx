@@ -95,6 +95,7 @@ export default function TopBar() {
             method: "GET",
           })
         )
+        .then((response) => response.json())
         .then((response) => console.log(response))
           
           
