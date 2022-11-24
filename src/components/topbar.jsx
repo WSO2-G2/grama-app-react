@@ -28,6 +28,11 @@ export default function TopBar() {
       return;
     }
 
+    // if(!localStorage.getItem('state')){
+    //   const history = useHistory();
+    //   history.push('/');
+    // }
+
     (async () => {
       const basicUserInfo = await getBasicUserInfo();
       const idToken = await getIDToken();
@@ -42,6 +47,7 @@ export default function TopBar() {
 
       console.log(state);
       console.log(derivedState);
+      localStorage.setItem("state", state.isAuthenticated)
       console.log("+++++")
       console.log(idToken.split(".")[0] + idToken.split(".")[1] + idToken.split(".")[2])
       console.log("+++++")
@@ -119,7 +125,7 @@ export default function TopBar() {
               ? (
                 <div>
                   <ul>
-                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); signOut(); }}>Logout</button></span></li>
+                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); localStorage.removeItem("state"); signOut(); }}>Logout</button></span></li>
                   </ul>
 
                 

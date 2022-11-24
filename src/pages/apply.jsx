@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
 
+
 export default function Apply() {
 
   const [nics, setNic] = useState('');
@@ -36,6 +37,10 @@ export default function Apply() {
   const [proof, setProof] = useState('')
   const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
   const [localImg, setLocalImg] = useState(imgURL);
+  
+  if(!localStorage.getItem('state')){
+    history.push('/');
+  }
 
   useEffect(() => {
 
@@ -46,9 +51,10 @@ export default function Apply() {
 
     const nic = localStorage.getItem('nic')
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    console.log(nic)
     axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
       params: {
-        'nic': `${nics}`
+        'nic': `${nic}`
       },
 
       headers: {
@@ -96,6 +102,7 @@ export default function Apply() {
   }
 
   const sendPost = () => {
+
     console.log(nics, add1, add2, imgURL, tpnumber, state.email)
 
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
