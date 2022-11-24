@@ -211,7 +211,7 @@ export default function Status() {
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
               <button onClick={submitID} className='nicBut' >Next</button >
             </div>
-            {setStatetrue &&
+            {false &&
               <div className='st-content' id="pdf" style={styleNormal}>
                 <h2>Application Status</h2>
                 <p>Name</p>
