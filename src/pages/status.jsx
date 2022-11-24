@@ -22,6 +22,7 @@ export default function Status() {
   // console.log(nicp);
 
   const [name, setname] = useState(msg);
+  const [username,setusername]=useState('')
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
@@ -214,8 +215,8 @@ export default function Status() {
             {false &&
               <div className='st-content' id="pdf" style={styleNormal}>
                 <h2>Application Status</h2>
-                <p>Name</p>
-                <p>NIC or Passport No</p>
+                <p>Name</p><span>{username}</span>
+                <p>NIC or Passport No</p><span>{NIC}</span>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
                     {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
