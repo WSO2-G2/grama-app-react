@@ -17,30 +17,6 @@ export default function Apply() {
   let history = useHistory();
 
   const MySwal = withReactContent(Swal)
-  useEffect(() => {
-
-    if (!state?.isAuthenticated) {
-      history.push("/");
-      return;
-    }
-
-    const nic = localStorage.getItem('nic')
-    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
-      params: {
-        'nic': `${nics}`
-      },
-
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-
-      }
-    }).then((response) => {
-      console.log(response.data)
-      setName(response.data.name)
-    })
-    setNic(nic)
-  }, [])
 
   const {
     state,
@@ -60,6 +36,31 @@ export default function Apply() {
   const [proof, setProof] = useState('')
   const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
   const [localImg, setLocalImg] = useState(imgURL);
+
+  useEffect(() => {
+
+    // if (!state?.isAuthenticated) {
+    //   history.push("/");
+    //   return;
+    // }
+
+    const nic = localStorage.getItem('nic')
+    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
+      params: {
+        'nic': `${nics}`
+      },
+
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+
+      }
+    }).then((response) => {
+      console.log(response.data)
+      setName(response.data.name)
+    })
+    setNic(nic)
+  }, [])
 
   async function handleSubmit(e) {
     console.log(add1)
