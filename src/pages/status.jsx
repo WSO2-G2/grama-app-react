@@ -22,6 +22,7 @@ export default function Status() {
   // console.log(nicp);
 
   const [name, setname] = useState(msg);
+  const [username,setusername]=useState('')
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
@@ -159,7 +160,7 @@ export default function Status() {
         // let addCheck = res[2].data.body;
         console.log(nameDetails)
 
-        setStatetrue(true)
+        // setStatetrue(true)
         setData(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
@@ -211,11 +212,11 @@ export default function Status() {
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
               <button onClick={submitID} className='nicBut' >Next</button >
             </div>
-            {setStatetrue &&
+            {false &&
               <div className='st-content' id="pdf" style={styleNormal}>
                 <h2>Application Status</h2>
-                <p>Name</p>
-                <p>NIC or Passport No</p>
+                <p>Name</p><span>{username}</span>
+                <p>NIC or Passport No</p><span>{NIC}</span>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
                     {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
