@@ -10,6 +10,7 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
+import LoadingScreen from '../react-loading-screen'
 
 export default function Apply() {
 
@@ -64,32 +65,42 @@ export default function Apply() {
   }, [])
 
   async function handleSubmit(e) {
-    console.log(add1)
+    <LoadingScreen
+    loading={true}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    logoSrc='/logo.png'
+    text='Here an introduction sentence (Optional)'
+  > 
+    asdnbaskdjb
+  </LoadingScreen>
+    // console.log(add1)
 
 
-    e.preventDefault();
-    console.log(file[0]);
-    console.log(file[0].name);
+    // e.preventDefault();
+    // console.log(file[0]);
+    // console.log(file[0].name);
 
-    const formData = new FormData();
-    formData.append('file', file[0]);
-    // replace this with your upload preset name
-    formData.append('upload_preset', 'nmknlgjq');
-    const options = {
-      method: 'POST',
-      body: formData,
-    };
-    console.log(options);
+    // const formData = new FormData();
+    // formData.append('file', file[0]);
+    // // replace this with your upload preset name
+    // formData.append('upload_preset', 'nmknlgjq');
+    // const options = {
+    //   method: 'POST',
+    //   body: formData,
+    // };
+    // console.log(options);
 
-    // replace cloudname with your Cloudinary cloud_name
-    return await fetch('https://api.Cloudinary.com/v1_1/dwb3ufwzf/image/upload', options)
-      .then(res => res.json())
-      .then(res => {
-        setImgURL(res.url);
-        console.log("Emaiiaia")
-        sendPost();
-      })
-      .catch(err => console.log(err));
+    // // replace cloudname with your Cloudinary cloud_name
+    // return await fetch('https://api.Cloudinary.com/v1_1/dwb3ufwzf/image/upload', options)
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     setImgURL(res.url);
+    //     console.log("Emaiiaia")
+    //     sendPost();
+    //   })
+    //   .catch(err => console.log(err));
 
 
 
