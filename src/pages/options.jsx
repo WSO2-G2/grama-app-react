@@ -4,8 +4,7 @@ import Side from '../components/side';
 
 
 import './index.css'; 
-import { Link } from 'react-router-dom';
-
+import { Link , useHistory} from 'react-router-dom';
 
 
 export default function Options() {
