@@ -224,8 +224,8 @@ export default function Status() {
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
 
-                <p>Name</p><span>{data.name}</span>
-                <p>NIC or Passport No</p><span>{NIC}</span>
+                <p>Name: <span>{data.name}</span></p>
+                <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
                     {(idCheckStatus === 'pending') && <Steps.Item title="Identity Check" icon={<Loader />} />}
