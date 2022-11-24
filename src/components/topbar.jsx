@@ -23,9 +23,8 @@ export default function TopBar() {
   let history = useHistory();
 
   useEffect(() => {
-
+    
     if (!state?.isAuthenticated) {
-      history.push("/");
       return;
     }
 
