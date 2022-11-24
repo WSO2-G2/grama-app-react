@@ -125,7 +125,7 @@ export default function TopBar() {
               ? (
                 <div>
                   <ul>
-                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); signOut(); }}>Logout</button></span></li>
+                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); localStorage.removeItem("state"); signOut(); }}>Logout</button></span></li>
                   </ul>
 
                 
