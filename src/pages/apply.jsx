@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 import '../styles/apply.css';
 import Side from '../components/side';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -14,6 +14,7 @@ import { useAuthContext } from "@asgardeo/auth-react";
 export default function Apply() {
 
   const [nics, setNic] = useState('');
+  let history = useHistory();
 
   const MySwal = withReactContent(Swal)
   useEffect(() => {
