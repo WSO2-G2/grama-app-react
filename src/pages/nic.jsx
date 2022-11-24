@@ -25,9 +25,6 @@ export default function NIC(props) {
   const [addressCheck, setAddressCheck] = useState('pending')
   const [email, setEmail] = useState('')
 
-
-
-
   const {
     state,
     signIn,
@@ -70,7 +67,6 @@ export default function NIC(props) {
           icon: 'error',
           title: 'You have a pending request',
           text: 'Please check the request status from the main menu',
-          // footer: '<a href="">Why do I have this issue?</a>'
         }).then(() => {
           window.location.href = "/options"
         })
@@ -122,11 +118,11 @@ export default function NIC(props) {
                   // return <Redirect to="/status/appId" />
 
 
-                }, 2000);
+                }, 3000);
 
               }
               else {
-                console.log("Police check fails", response.data.body)
+                console.log("Police check true", response.data.body)
                 setRedirect(true);
 
 
@@ -138,7 +134,7 @@ export default function NIC(props) {
                   history.push("/apply");
 
 
-                }, 1000);
+                }, 2000);
 
 
               }
@@ -151,9 +147,15 @@ export default function NIC(props) {
           else {
             setCurrentStatus("error")
             setTimeout(() => {
-              history.push("/status/appId");
 
-            }, 2000);
+            }, 3000);
+            Swal.fire({
+              icon: 'error',
+              title: 'Unidentified Identity entered',
+              text: 'You will be redirected to the options page',
+            }).then(() => {
+              window.location.href = "/options"
+            })
 
           }
 
