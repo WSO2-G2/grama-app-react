@@ -3,7 +3,7 @@ import TopBar from '../components/topbar';
 import Side from '../components/side';
 
 import { Steps } from 'rsuite';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { setRef } from '@mui/material';
@@ -35,6 +35,12 @@ export default function Status() {
   const [currentStatus, setCurrentStatus] = useState('pending');
   const [idCheckStatus, setIdCheckStatus] = useState('')
   const [policeCheckStatus, setPoliceCheckStatus] = useState('')
+
+  const history = useHistory();
+  
+  if(!localStorage.getItem('state')){
+    history.push('/');
+  }
 
   const createPDF = () => {
     var doc = new jsPDF()
@@ -180,7 +186,7 @@ export default function Status() {
           setidentityCheck(false);
           setCurrentStatus('error');
         }
-        if (policeCheck === 'true') {
+        if (policeCheck === 'false') {
           setpoliceCheck(true);
           setState(2);
         } else {
