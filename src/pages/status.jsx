@@ -158,7 +158,7 @@ export default function Status() {
         let policeCheck = res[1].data.body;
         let nameDetails = res[2].data;
         // let addCheck = res[2].data.body;
-        console.log(nameDetails)
+        console.log(nameDetails.name)
 
        
         setData(nameDetails)
