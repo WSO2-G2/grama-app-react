@@ -160,7 +160,7 @@ export default function Status() {
         // let addCheck = res[2].data.body;
         console.log(nameDetails)
 
-        // setStatetrue(true)
+       
         setData(nameDetails)
         let addCheck = '';
         setIdCheckStatus('received');
@@ -187,6 +187,8 @@ export default function Status() {
           setpoliceCheck(false);
           setCurrentStatus('error');
         }
+
+         setStatetrue(true)
       })
     } catch (err) {
       console.log(accessToken);
@@ -213,7 +215,7 @@ export default function Status() {
               <input type="text" placeholder='Enter Your  NIC' onChange={(e) => { setNIC(e.target.value) }} className='inputid' />
               <button onClick={submitID} className='nicBut' >Next</button >
             </div>
-            {false &&
+            {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
 
                 <p>Name</p><span>{username}</span>
