@@ -1,8 +1,7 @@
 import TopBar from '../components/topbar';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { Audio } from  'react-loader-spinner'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 
 import '../styles/apply.css';
 import Side from '../components/side';
@@ -104,41 +103,41 @@ export default function Apply() {
 
   const sendPost = () => {
 
-    // console.log(nics, add1, add2, imgURL, tpnumber, state.email)
+    console.log(nics, add1, add2, imgURL, tpnumber, state.email)
 
-    // const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
-    // axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
+    const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
+    axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
 
-    //   'nic': `${nics}`,
-    //   'address': `${add1} ${add2}`,
-    //   'image': `${imgURL}`,
-    //   'status': `Pending`,
-    //   'phone': `${tpnumber}`,
-    //   'email': `${state.email}`,
-    //   'name': `${name}`
+      'nic': `${nics}`,
+      'address': `${add1} ${add2}`,
+      'image': `${imgURL}`,
+      'status': `Pending`,
+      'phone': `${tpnumber}`,
+      'email': `${state.email}`,
+      'name': `${name}`
 
-    // }, {
+    }, {
 
-    //   headers: {
-    //     'Authorization': `Bearer ${accessToken}`,
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
 
-    //   }
+      }
 
 
 
-    // })
-    //   .then((response) => {
-    //     Swal.fire({
-    //       icon: 'success',
-    //       title: 'Form Submitted Sucessfully',
-    //       text: 'Stay tuned!',
-    //       // footer: '<a href="">Why do I have this issue?</a>'
-    //     }).then(() => {
-    //       window.location.href = "/options"
-    //     })
-    //     console.log(response.data)
-    //   })
-return <Loading></Loading>
+    })
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Form Submitted Sucessfully',
+          text: 'Stay tuned!',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        }).then(() => {
+          window.location.href = "/options"
+        })
+        console.log(response.data)
+      })
+
   }
 
   useEffect(() => {
