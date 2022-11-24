@@ -81,7 +81,7 @@ export default function Apply() {
     logoSrc='/logo.png'
     text='Here an introduction sentence (Optional)'
   > 
-    asdnbaskdjb
+  <div>loading content</div>
   </LoadingScreen>
     // console.log(add1)
 
