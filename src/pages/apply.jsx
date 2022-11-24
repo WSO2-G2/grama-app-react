@@ -10,7 +10,7 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from "@asgardeo/auth-react";
-import Loading from './loading';
+
 
 export default function Apply() {
 
