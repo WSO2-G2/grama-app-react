@@ -249,7 +249,8 @@ export default function Status() {
                     } else {
                       setState(3);
                     }
-                  }
+            }
+            setStatetrue(true)
           })
 
         }else{
