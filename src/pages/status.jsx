@@ -253,9 +253,6 @@ export default function Status() {
           })
 
         }else{
-
-          console.log(accessToken);
-          console.log(err);
           Swal.fire({
             icon: 'error',
             title: 'No pending request found',
