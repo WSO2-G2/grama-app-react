@@ -27,7 +27,7 @@ export default function Status() {
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
-  const [addressCheck, setaddressCheck] = useState('');
+  const [addressCheck, setaddressCheck] = useState('pending');
   const [policeCheck, setpoliceCheck] = useState(false);
   const { getBasicUserInfo } = useAuthContext();
   const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
@@ -47,17 +47,17 @@ export default function Status() {
     var doc = new jsPDF()
     doc.setCreationDate(new Date())
     doc.setFontSize(22)
-    doc.text(20, 20, 'Grama Certificate')
+    doc.text(20, 20, 'Certificate on Residence and Character issued by the Grama Niladhari', {align: 'center'})
     doc.moveTo(0, 20)
     doc.setFontSize(12)
-    doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', { maxWidth: '150' })
+    doc.text(20, 40, 'This is a computer generated Certificate issued by the Grama Niladhari of Division in which the applicant resides is valid only for 6 months from the date generated.', { maxWidth: '150' })
     doc.text(20, 70, `Name : ${requestData.name}`, { maxWidth: '150' })
     doc.text(20, 80, `NIC : ${NIC}`, { maxWidth: '150' })
     doc.text(20, 90, `Address : ${requestData.address}`, { maxWidth: '150' })
     doc.text(20, 110, `Identity Check : ${(identityCheck) ? 'Verified & Validated' : 'Unidentified Identity'}`, { maxWidth: '150' })
     doc.text(20, 120, `Police Check : ${(policeCheck) ? 'Verified & No Crimes found' : 'Identified with Crimes on the Police records'}`, { maxWidth: '150' })
     doc.text(20, 130, `Address Check : ${addressCheck}`, { maxWidth: '150' })
-    doc.text(20, 160, 'I hereby certify that the Identity, Police and Address check of the above specified person has been verified.', { maxWidth: '150' })
+    doc.text(20, 160, `It is hereby certified that the above particulars are correct to the best of my knowledge, he/she is a Citizen of SriLanka by descent/registration, his/her Certificate of Registration Number is ${requestData.request_id} and that it has been issued by the Divisional Secretariat of the respective division.`, { maxWidth: '150' })
     doc.text(20, 180, 'Grama Niledari', { maxWidth: '150' })
 
     doc.setFontSize(10)
@@ -221,7 +221,7 @@ export default function Status() {
           }
       }).then(res => {
         console.log(res);
-        let requestStatus = res;
+        let requestStatus = res.data;
 
         if(requestStatus){
 
@@ -249,13 +249,11 @@ export default function Status() {
                     } else {
                       setState(3);
                     }
-                  }
+            }
+            setStatetrue(true)
           })
 
         }else{
-
-          console.log(accessToken);
-          console.log(err);
           Swal.fire({
             icon: 'error',
             title: 'No pending request found',
@@ -305,7 +303,7 @@ export default function Status() {
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
 
-                <p>Name: <span>{data.name}</span></p>
+                <p>Name: <span>{requestData.name}</span></p>
                 <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
