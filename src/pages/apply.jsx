@@ -13,9 +13,12 @@ import { useAuthContext } from "@asgardeo/auth-react";
 import React from 'react'
 const LoadingScreen = require('react-loading-screen');
 
+import { SyncLoader } from 'react-spinners';
 
 
 export default function Apply() {
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const [nics, setNic] = useState('');
   let history = useHistory();
@@ -85,6 +88,8 @@ export default function Apply() {
   // </LoadingScreen>
     console.log(add1)
 
+    setIsLoading(true);
+
 
     e.preventDefault();
     console.log(file[0]);
@@ -107,6 +112,7 @@ export default function Apply() {
         setImgURL(res.url);
         console.log("Emaiiaia")
         sendPost();
+        setIsLoading(false)
       })
       .catch(err => console.log(err));
 
@@ -166,6 +172,10 @@ export default function Apply() {
     // free memory when ever this component is unmounted
     // return () => URL.revokeObjectURL(objectUrl)
   }, [file])
+
+  if(isLoading){
+    return <SyncLoader color="#ff7f50" />
+  }
 
   return (
     <>
