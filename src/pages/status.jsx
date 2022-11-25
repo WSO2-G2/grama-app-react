@@ -50,10 +50,8 @@ export default function Status() {
     doc.text(20, 20, 'Grama Certificate')
     doc.moveTo(0, 20)
     doc.setFontSize(12)
-
-
     doc.text(20, 40, 'This is a computer generated Certificate that certifies the vertification details of the given person.', { maxWidth: '150' })
-    doc.text(20, 70, `Name : ${data.name}`, { maxWidth: '150' })
+    doc.text(20, 70, `Name : ${requestData.name}`, { maxWidth: '150' })
     doc.text(20, 80, `NIC : ${NIC}`, { maxWidth: '150' })
     doc.text(20, 90, `Address : ${requestData.address}`, { maxWidth: '150' })
     doc.text(20, 110, `Identity Check : ${(identityCheck) ? 'Verified & Validated' : 'Unidentified Identity'}`, { maxWidth: '150' })
