@@ -14,6 +14,8 @@ import { Loader } from 'rsuite';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 
+import { FaSpinner } from 'react-icons/fa';
+
 
 export default function Status() {
 
@@ -82,79 +84,8 @@ export default function Status() {
 
     setIdCheckStatus('pending');
     setPoliceCheckStatus('pending');
-
-    const getIdCheck = () => {
-      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/checkId?', {
-        params: {
-          // 'nic': `${newid}`
-
-          'nic': `${NIC}`
-
-        },
-
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        }
-      })
-      return res;
-    }
-
-    const getPoliceCheck = () => {
-      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/policeccheck/1.0.0/getalldetails', {
-        params: {
-          'nic': `${NIC}`
-        },
-
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        }
-      })
-      return res;
-    }
-
-    const getAddressCheck = () => {
-      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addressCheck?', {
-        params: {
-          // 'nic': `${newid}`
-
-          'nic': `${NIC}`
-
-        },
-
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        }
-      })
-      return res;
-    }
-
-
-    const getnameDetails = () => {
-      let res = axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/identitycheck/1.0.0/getdetails', {
-        params: {
-          // 'nic': `${newid}`
-
-          'nic': `${NIC}`
-
-        },
-
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        }
-      })
-      return res;
-    }
-
-    const getRequestDetails = ()=>{
-      return axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestdetails?',{
-        params: {
-          'nic': `${NIC}`
-        },
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        }
-      })
-    }
+    setaddressCheck('pending');
+    setState(0);
 
     // try {
     //   Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
@@ -261,7 +192,7 @@ export default function Status() {
           }).then(() => {
             setIdCheckStatus('received');
             setPoliceCheckStatus('received');
-            window.location.href = "/status"
+            window.location.href = "/status/appid"
           })
 
         }
@@ -302,7 +233,7 @@ export default function Status() {
             </div>
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
-
+                {(idCheckStatus === 'pending') && (<>
                 <p>Name: <span>{requestData.name}</span></p>
                 <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
@@ -311,20 +242,22 @@ export default function Status() {
                     {(idCheckStatus === 'received') && ((identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
                       <Steps.Item title="Identity Check" status={currentStatus} />)}
                     {/* {(identityCheck) ? <Steps.Item title="Identity Check" status="finish" /> :
-       <Steps.Item title="Identity Check" status={currentStatus} />} */}
+                    <Steps.Item title="Identity Check" status={currentStatus} />} */}
                     {(policeCheckStatus === 'pending') && <Steps.Item title="Police Check" icon={<Loader />} />}
                     {(policeCheckStatus === 'received') && ((policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
                       <Steps.Item title="Police Check" status={currentStatus} />)}
                     {/* {(policeCheck) ? <Steps.Item title="Police Check" status="finish" /> :
-       <Steps.Item title="Police Check" status={currentStatus} />} */}
-                    {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<Loader />} /> :
+                    <Steps.Item title="Police Check" status={currentStatus} />} */}
+                    {(addressCheck === 'pending') ? <Steps.Item title="Address Check" icon={<FaSpinner color='grey'/>} /> :
                       <Steps.Item title="Address Check" status={currentStatus} />}
 
                   </Steps>
                 </div>
                 <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
+              </>) }
               </div>
             }
+
 
             {/* <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link> */}
             <Link to={"/options"}>Back</Link>
