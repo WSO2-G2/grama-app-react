@@ -15,7 +15,14 @@ import { useAuthContext } from "@asgardeo/auth-react";
 
 import { SyncLoader } from 'react-spinners';
 
+const override = {
+    display: "block",
+    margin: "0 auto",
+    marginTop: "18%",
+    marginLeft: "53%",
+  };
 
+  
 export default function Apply() {
 
   const [isLoading, setIsLoading] = useState(false)
@@ -174,7 +181,7 @@ export default function Apply() {
   }, [file])
 
   if(isLoading){
-    return <SyncLoader color="#ff7f50" />
+    return <SyncLoader color="#ff7f50"  size={100} cssOverride={override}/>
   }
 
   return (
