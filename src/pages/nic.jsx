@@ -171,11 +171,6 @@ export default function NIC(props) {
 
       }
     })
-
-
-
-
-
   }
   return (
     <>
