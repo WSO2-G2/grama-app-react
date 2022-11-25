@@ -118,11 +118,15 @@ export default function NIC(props) {
                 setState(1)
                 setCurrentStatus('error')
                 setTimeout(() => {
-                  history.push("/status/appId");
-                  // return <Redirect to="/status/appId" />
-
-
                 }, 3000);
+
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Police check failed',
+                  text: 'You are unable to get a Grama certificate',
+                }).then(() => {
+                  window.location.href = "/options"
+                })
 
               }
               else {
