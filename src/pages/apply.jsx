@@ -19,7 +19,7 @@ const override = {
     display: "block",
     margin: "0 auto",
     marginTop: "18%",
-    marginLeft: "53%",
+    marginLeft: "30%%",
   };
 
   
