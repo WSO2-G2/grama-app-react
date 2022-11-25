@@ -119,7 +119,7 @@ export default function Apply() {
         setImgURL(res.url);
         console.log("Emaiiaia")
         sendPost();
-        setIsLoading(false)
+        
       })
       .catch(err => console.log(err));
 
@@ -154,6 +154,7 @@ export default function Apply() {
 
     })
       .then((response) => {
+        setIsLoading(false)
         Swal.fire({
           icon: 'success',
           title: 'Form Submitted Sucessfully',
