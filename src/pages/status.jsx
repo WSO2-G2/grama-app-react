@@ -27,7 +27,7 @@ export default function Status() {
   const [NIC, setNIC] = useState('');
   const [email, setemail] = useState();
   const [identityCheck, setidentityCheck] = useState(false);
-  const [addressCheck, setaddressCheck] = useState('Pending');
+  const [addressCheck, setaddressCheck] = useState('pending');
   const [policeCheck, setpoliceCheck] = useState(false);
   const { getBasicUserInfo } = useAuthContext();
   const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
@@ -221,7 +221,7 @@ export default function Status() {
           }
       }).then(res => {
         console.log(res);
-        let requestStatus = res;
+        let requestStatus = res.data;
 
         if(requestStatus){
 
@@ -303,7 +303,7 @@ export default function Status() {
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
 
-                <p>Name: <span>{data.name}</span></p>
+                <p>Name: <span>{requestData.name}</span></p>
                 <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
                   <Steps current={statestep} >
