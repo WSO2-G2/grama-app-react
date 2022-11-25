@@ -233,7 +233,6 @@ export default function Status() {
             </div>
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
-                {(idCheckStatus === 'pending') && (<>
                 <p>Name: <span>{requestData.name}</span></p>
                 <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
@@ -254,8 +253,12 @@ export default function Status() {
                   </Steps>
                 </div>
                 <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
-              </>) }
               </div>
+            }
+            {(!statetrue) && 
+            <div className='st-content' id="pdf" style={styleNormal}>
+              <Loader />
+            </div>
             }
 
 
