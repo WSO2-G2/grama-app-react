@@ -158,49 +158,119 @@ export default function Status() {
       })
     }
 
-    try {
-      Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
+    // try {
+    //   Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
+    //     console.log(accessToken);
+    //     console.log(res);
+    //     let idCheck = res[0].data.body;
+    //     let policeCheck = res[1].data.body;
+    //     let nameDetails = res[2].data;
+    //     let requestDetails = res[3].data;
+    //     // let addCheck = res[2].data.body;
+    //     console.log(nameDetails.name)
+    //     console.log(requestDetails.address)
+    //     setData(nameDetails)
+    //     setRequestdata(requestDetails)
+    //     let addCheck = '';
+    //     setIdCheckStatus('received');
+    //     setPoliceCheckStatus('received');
+    //     if (addCheck === 'rejected' || addCheck === 'approved') {
+    //       setaddressCheck(addCheck);
+    //       if (addCheck === 'rejected') {
+    //         setCurrentStatus('error');
+    //       } else {
+    //         setState(3);
+    //       }
+    //     }
+    //     if (idCheck === 'true') {
+    //       setidentityCheck(true);
+    //       setState(1);
+    //     } else {
+    //       setidentityCheck(false);
+    //       setCurrentStatus('error');
+    //     }
+    //     if (policeCheck === 'false') {
+    //       setpoliceCheck(true);
+    //       setState(2);
+    //     } else {
+    //       setpoliceCheck(false);
+    //       setCurrentStatus('error');
+    //     }
 
-        console.log(accessToken);
-        console.log(res);
-        let idCheck = res[0].data.body;
-        let policeCheck = res[1].data.body;
-        let nameDetails = res[2].data;
-        let requestDetails = res[3].data;
-        // let addCheck = res[2].data.body;
-        console.log(nameDetails.name)
-        console.log(requestDetails.address)
-        setData(nameDetails)
-        setRequestdata(requestDetails)
-        let addCheck = '';
-        setIdCheckStatus('received');
-        setPoliceCheckStatus('received');
-        if (addCheck === 'rejected' || addCheck === 'approved') {
-          setaddressCheck(addCheck);
-          if (addCheck === 'rejected') {
-            setCurrentStatus('error');
-          } else {
-            setState(3);
+    //      setStatetrue(true)
+    //   })
+    // } catch (err) {
+    //   console.log(accessToken);
+    //   console.log(err);
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'No pending request found',
+    //     text: 'Please enter a NIC of a valid pending request',
+    //   }).then(() => {
+    //     setIdCheckStatus('received');
+    //     setPoliceCheckStatus('received');
+    //     window.location.href = "/status"
+    //   })
+    // }
+    
+    try{
+      axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestavailable?',{
+          params: {
+            'nic': `${NIC}`
+          },
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
           }
-        }
-        if (idCheck === 'true') {
-          setidentityCheck(true);
-          setState(1);
-        } else {
-          setidentityCheck(false);
-          setCurrentStatus('error');
-        }
-        if (policeCheck === 'false') {
-          setpoliceCheck(true);
-          setState(2);
-        } else {
-          setpoliceCheck(false);
-          setCurrentStatus('error');
-        }
+      }).then(res => {
+        console.log(res);
+        let requestStatus = res;
 
-         setStatetrue(true)
+        if(requestStatus){
+
+          axios.get('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/gramaconnect/1.0.0/requestdetails?',{
+            params: {
+              'nic': `${NIC}`
+            },
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+            }
+          }).then(res => {
+            console.log(res);
+            let requestDetails = res.data;
+            setIdCheckStatus('received');
+            setPoliceCheckStatus('received');
+            setidentityCheck(true);
+            setpoliceCheck(true);
+            setState(2);
+            setRequestdata(requestDetails);
+            let addCheck = requestDetails.status;
+            if (addCheck === 'Rejected' || addCheck === 'Accepted') {
+                    setaddressCheck(addCheck);
+                    if (addCheck === 'Rejected') {
+                      setCurrentStatus('error');
+                    } else {
+                      setState(3);
+                    }
+                  }
+          })
+
+        }else{
+
+          console.log(accessToken);
+          console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'No pending request found',
+            text: 'Please enter a NIC of a valid pending request',
+          }).then(() => {
+            setIdCheckStatus('received');
+            setPoliceCheckStatus('received');
+            window.location.href = "/status"
+          })
+
+        }
       })
-    } catch (err) {
+    }catch (err){
       console.log(accessToken);
       console.log(err);
       Swal.fire({
