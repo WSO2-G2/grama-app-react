@@ -207,7 +207,7 @@ export default function Status() {
       }).then(() => {
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
-        window.location.href = "/status"
+        window.location.href = "/status/appid"
       })
     }
 
