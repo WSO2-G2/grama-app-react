@@ -38,6 +38,7 @@ export default function Status() {
   const [currentStatus, setCurrentStatus] = useState('pending');
   const [idCheckStatus, setIdCheckStatus] = useState('')
   const [policeCheckStatus, setPoliceCheckStatus] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   
@@ -49,7 +50,7 @@ export default function Status() {
     var doc = new jsPDF()
     doc.setCreationDate(new Date())
     doc.setFontSize(22)
-    doc.text(20, 20, 'Certificate on Residence and Character issued by the Grama Niladhari', {align: 'center'})
+    doc.text(20, 20, 'Certificate on Residence and Character issued by the Grama Niladhari')
     doc.moveTo(0, 20)
     doc.setFontSize(12)
     doc.text(20, 40, 'This is a computer generated Certificate issued by the Grama Niladhari of Division in which the applicant resides is valid only for 6 months from the date generated.', { maxWidth: '150' })
@@ -86,6 +87,7 @@ export default function Status() {
     setPoliceCheckStatus('pending');
     setaddressCheck('pending');
     setState(0);
+    setLoading(true);
 
     // try {
     //   Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
@@ -182,6 +184,7 @@ export default function Status() {
                     }
             }
             setStatetrue(true)
+            setLoading(false)
           })
 
         }else{
@@ -255,7 +258,7 @@ export default function Status() {
                 <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
               </div>
             }
-            {(!statetrue) && 
+            {(loading) && 
             <div className='st-content' id="pdf" style={styleNormal}>
               <Loader />
             </div>
