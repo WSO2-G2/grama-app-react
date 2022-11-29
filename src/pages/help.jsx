@@ -30,6 +30,7 @@ export default function Help() {
         }
       ).then((res)=>{
         console.log(res);
+        setMsg('');
       })
     }catch(err){
       console.log(err);
@@ -45,9 +46,9 @@ export default function Help() {
           <p>Get your help from our Slack Developers Community ...</p>
           {/* <a href="/options">Go &rarr;</a> */}
 
-          <input type="text" id="msg" name="msg" onChange={(e)=>{setMsg(e.target.value)}} className='nicInput' placeholder='Enter your enquiry' />
-          <div><button onClick={sendHelp} className='nicButton'>Send</button></div>
-          <div><Link to={"/options"}>Back</Link></div>
+          <input type="text" id="msg" name="msg" value={msg} onChange={(e)=>{setMsg(e.target.value)}} className='nicInput' placeholder='Enter your enquiry' />
+          <div style={{'padding':'10%'}}><button onClick={sendHelp} className='nicButton'>Send</button></div>
+          <div style={{'padding':'10%'}}><Link to={"/options"}>Back</Link></div>
 
         </div>
         <div className='contentOne'>

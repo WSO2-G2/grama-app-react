@@ -49,7 +49,7 @@ export default function Status() {
   const createPDF = () => {
     var doc = new jsPDF()
     doc.setCreationDate(new Date())
-    doc.setFontSize(22)
+    doc.setFontSize(20)
     doc.text(10, 20, 'Certificate on Residence and Character issued by the Grama Niladhari')
     doc.moveTo(0, 20)
     doc.setFontSize(12)
