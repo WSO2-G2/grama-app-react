@@ -3,10 +3,12 @@ import TopBar from '../components/topbar';
 import Side from '../components/side';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
+import axios from 'axios';
 
 
 export default function Help() {
 
+  const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
   const [msg,setMsg] = useState('');
 
   const sendHelp = () => {
