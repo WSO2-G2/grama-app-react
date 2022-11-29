@@ -47,8 +47,8 @@ export default function Help() {
           {/* <a href="/options">Go &rarr;</a> */}
 
           <input type="text" id="msg" name="msg" value={msg} onChange={(e)=>{setMsg(e.target.value)}} className='nicInput' placeholder='Enter your enquiry' />
-          <div style={{'padding':'10%'}}><button onClick={sendHelp} className='nicButton'>Send</button></div>
-          <div style={{'padding':'10%'}}><Link to={"/options"}>Back</Link></div>
+          <div style={{'padding':'5%'}}><button onClick={sendHelp} className='nicButton'>Send</button></div>
+          <div style={{'padding':'5%'}}><Link to={"/options"}>Back</Link></div>
 
         </div>
         <div className='contentOne'>

@@ -50,7 +50,7 @@ export default function Status() {
     var doc = new jsPDF()
     doc.setCreationDate(new Date())
     doc.setFontSize(20)
-    doc.text(10, 20, 'Certificate on Residence and Character issued by the Grama Niladhari')
+    doc.text(10, 20, 'Certificate on Residence and Character issued by the Grama Niladhari', { maxWidth: '200' })
     doc.moveTo(0, 20)
     doc.setFontSize(12)
     doc.text(20, 40, 'This is a computer generated Certificate issued by the Grama Niladhari of Division in which the applicant resides is valid only for 6 months from the date generated.', { maxWidth: '150' })
