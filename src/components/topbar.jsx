@@ -55,6 +55,9 @@ export default function TopBar() {
 
       setDerivedAuthenticationState(derivedState);
 
+      const {authorization} = process.env;
+      console.log(`authorization : ${authorization}`)
+
       // Exhange idToken for API token using STS in Choreo
       fetch("https://sts.choreo.dev/oauth2/token", {
         body: "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&subject_token=" + idToken + "&subject_token_type=urn:ietf:params:oauth:token-type:jwt&requested_token_type=urn:ietf:params:oauth:token-type:jwt",
