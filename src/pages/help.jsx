@@ -11,6 +11,27 @@ export default function Help() {
 
   const sendHelp = () => {
     console.log(msg);
+
+    try{
+      axios.post(
+        'https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/slackhelpserviceapi/1.0.0/sendMessageToChannel',
+        // '{\n  "msg": "Testing from OpenAPI console."\n}',
+        {
+            'msg': `${msg}`
+        },
+        {
+            headers: {
+                'accept': 'text/plain',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        }
+      ).then((res)=>{
+        console.log(res);
+      })
+    }catch(err){
+      console.log(err);
+    };
   }
 
   return (
@@ -24,6 +45,7 @@ export default function Help() {
 
           <input type="text" id="msg" name="msg" onChange={(e)=>{setMsg(e.target.value)}} className='nicInput' placeholder='Enter your enquiry' />
           <button onClick={sendHelp} className='nicButton'>Send</button>
+          <Link to={"/options"}>Back</Link>
 
         </div>
         <div className='contentOne'>
