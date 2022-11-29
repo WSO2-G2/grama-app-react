@@ -18,11 +18,9 @@ function App() {
         <Route path="/options"> <Options/> </Route>
         <Route path="/apply"> <Apply/> </Route>
         <Route path="/status/:appId"> <Status/> </Route>
-
         <Route path="/nic"> <NIC/> </Route>
-       
-
-        {/* <Route path="/help"><Help/></Route> */}
+        <Route path="/help"> <Help/> </Route>
+        
         {/* <SecureRoute path={ "/help" } component={ <Help /> } callback={ ()=>console.log("CALLBACK") } /> */}
 
 
