@@ -180,6 +180,7 @@ export default function Status() {
                     if (addCheck === 'Rejected') {
                       setCurrentStatus('error');
                     } else {
+                      setCurrentStatus('finish');
                       setState(3);
                     }
             }
