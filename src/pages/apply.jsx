@@ -48,7 +48,8 @@ export default function Apply() {
   const [add2, setAdd2] = useState('');
   const [tpnumber, setTpnumber] = useState('');
   const [proof, setProof] = useState('')
-  const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
+  //const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
+  const [imgURL, setImgURL] = useState('');
   const [localImg, setLocalImg] = useState(imgURL);
   
   if(!localStorage.getItem('state')){
@@ -118,7 +119,7 @@ export default function Apply() {
       .then(res => {
         setImgURL(res.url);
         console.log(res.url)
-        sendPost();
+        sendPost(res.url);
         
       })
       .catch(err => console.log(err));
@@ -128,16 +129,17 @@ export default function Apply() {
 
   }
 
-  const sendPost = () => {
+  const sendPost = (url) => {
 
     console.log(nics, add1, add2, imgURL, tpnumber, state.email)
+    console.log(url);
 
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
 
       'nic': `${nics}`,
       'address': `${add1} ${add2}`,
-      'image': `${imgURL}`,
+      'image': `${url}`,
       'status': `Pending`,
       'phone': `${tpnumber}`,
       'email': `${state.email}`,
@@ -169,10 +171,10 @@ export default function Apply() {
   }
 
   useEffect(() => {
-    // if (!file) {
-    //   setLocalImg('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0')
-    //   return
-    // }
+    if (!file) {
+      setLocalImg('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0')
+      return
+    }
 
     const objectUrl = URL.createObjectURL(file[0])
     setLocalImg(objectUrl)
@@ -204,7 +206,7 @@ export default function Apply() {
                 <input type="text" placeholder='Address Line 2' onChange={(e) => { setAdd2(e.target.value) }} />
 
                 <label>Address Proof</label>
-                <input type="file" accept="image/png" onChange={(e) => { setFile(e.target.files) }} />
+                <input type="file" accept="image/png" onChange={(e) => { setFile(() => (e.target.files)); }} />
                 {/* <CloudinaryContext cloudName="dwb3ufwzf">
                   <div>
                     <Image publicId={imgURL} width="50" />
