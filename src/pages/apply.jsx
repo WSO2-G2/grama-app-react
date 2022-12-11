@@ -48,7 +48,8 @@ export default function Apply() {
   const [add2, setAdd2] = useState('');
   const [tpnumber, setTpnumber] = useState('');
   const [proof, setProof] = useState('')
-  const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
+  //const [imgURL, setImgURL] = useState('https://th.bing.com/th/id/R.213f89705b9194fad522ce482a2f380d?rik=9QchXovylf%2fFwg&riu=http%3a%2f%2fsilkbrassband.co.uk%2fimages%2fno-image-selected.png&ehk=xlxWhDE0BgrkYOymeMxfDg19OoKsofQBsH24CBcYVKg%3d&risl=&pid=ImgRaw&r=0');
+  const [imgURL, setImgURL] = useState('');
   const [localImg, setLocalImg] = useState(imgURL);
   
   if(!localStorage.getItem('state')){
