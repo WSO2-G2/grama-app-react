@@ -6,7 +6,6 @@ import axios from 'axios';
 import { checkTokenAndRenew, isTokenExpired, renewToken } from '../renewToken/token';
 import { useHistory } from 'react-router-dom';
 
-
 export default function TopBar() {
 
   const {
@@ -54,6 +53,9 @@ export default function TopBar() {
       console.log(idToken)
 
       setDerivedAuthenticationState(derivedState);
+
+      const authorization = process.env.REACT_APP_authorization;
+      console.log(`authorization : ${authorization}`)
 
       // Exhange idToken for API token using STS in Choreo
       fetch("https://sts.choreo.dev/oauth2/token", {
@@ -125,7 +127,7 @@ export default function TopBar() {
               ? (
                 <div>
                   <ul>
-                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); localStorage.removeItem("state"); signOut(); }}>Logout</button></span></li>
+                    <li><span>{state.email}</span><span><button onClick={() => { localStorage.removeItem("API_TOKEN"); localStorage.removeItem("state"); signOut(); }} className='logoutbut' >Logout</button></span></li>
                   </ul>
 
                 

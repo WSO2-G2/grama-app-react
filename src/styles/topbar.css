@@ -73,3 +73,15 @@ padding: 10px;
     cursor: pointer;
     margin-top: 0px;
 }
+
+.loginbutoon:hover{
+    color: #fff;
+}
+
+.logoutbut{
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    border: 1px solid coral;
+    background-color: transparent;
+}

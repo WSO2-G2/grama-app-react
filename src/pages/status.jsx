@@ -38,6 +38,7 @@ export default function Status() {
   const [currentStatus, setCurrentStatus] = useState('pending');
   const [idCheckStatus, setIdCheckStatus] = useState('')
   const [policeCheckStatus, setPoliceCheckStatus] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   
@@ -48,8 +49,8 @@ export default function Status() {
   const createPDF = () => {
     var doc = new jsPDF()
     doc.setCreationDate(new Date())
-    doc.setFontSize(22)
-    doc.text(20, 20, 'Certificate on Residence and Character issued by the Grama Niladhari', {align: 'center'})
+    doc.setFontSize(20)
+    doc.text(10, 20, 'Certificate on Residence and Character issued by the Grama Niladhari', { maxWidth: '200' })
     doc.moveTo(0, 20)
     doc.setFontSize(12)
     doc.text(20, 40, 'This is a computer generated Certificate issued by the Grama Niladhari of Division in which the applicant resides is valid only for 6 months from the date generated.', { maxWidth: '150' })
@@ -86,6 +87,7 @@ export default function Status() {
     setPoliceCheckStatus('pending');
     setaddressCheck('pending');
     setState(0);
+    setLoading(true);
 
     // try {
     //   Promise.all([getIdCheck(), getPoliceCheck(), getnameDetails(), getRequestDetails() ]).then(res => {
@@ -182,6 +184,7 @@ export default function Status() {
                     }
             }
             setStatetrue(true)
+            setLoading(false)
           })
 
         }else{
@@ -207,7 +210,7 @@ export default function Status() {
       }).then(() => {
         setIdCheckStatus('received');
         setPoliceCheckStatus('received');
-        window.location.href = "/status"
+        window.location.href = "/status/appid"
       })
     }
 
@@ -233,7 +236,6 @@ export default function Status() {
             </div>
             {statetrue &&
               <div className='st-content' id="pdf" style={styleNormal}>
-                {(idCheckStatus === 'pending') && (<>
                 <p>Name: <span>{requestData.name}</span></p>
                 <p>NIC or Passport No : <span>{NIC}</span></p>
                 <div className='stepsDiv'>
@@ -254,8 +256,12 @@ export default function Status() {
                   </Steps>
                 </div>
                 <Link onClick={createPDF} to="#" type="button">Get your Grama Certificate</Link>
-              </>) }
               </div>
+            }
+            {(loading) && 
+            <div className='st-content' id="pdf" style={styleNormal}>
+              <Loader />
+            </div>
             }
 
 
