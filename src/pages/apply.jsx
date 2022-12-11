@@ -119,7 +119,7 @@ export default function Apply() {
       .then(res => {
         setImgURL(res.url);
         console.log(res.url)
-        sendPost();
+        sendPost(res.url);
         
       })
       .catch(err => console.log(err));
@@ -129,16 +129,17 @@ export default function Apply() {
 
   }
 
-  const sendPost = () => {
+  const sendPost = (url) => {
 
     console.log(nics, add1, add2, imgURL, tpnumber, state.email)
+    console.log(url);
 
     const accessToken = JSON.parse(localStorage.getItem("API_TOKEN")).access_token;
     axios.post('https://7fa2c1a4-2bfc-4c58-899f-9569c112150b-prod.e1-us-east-azure.choreoapis.dev/ddrq/addresscheck/1.0.0/addRequest', {
 
       'nic': `${nics}`,
       'address': `${add1} ${add2}`,
-      'image': `${imgURL}`,
+      'image': `${url}`,
       'status': `Pending`,
       'phone': `${tpnumber}`,
       'email': `${state.email}`,
@@ -205,7 +206,7 @@ export default function Apply() {
                 <input type="text" placeholder='Address Line 2' onChange={(e) => { setAdd2(e.target.value) }} />
 
                 <label>Address Proof</label>
-                <input type="file" accept="image/png" onChange={(e) => { console.log("SETING IMAGE"); setFile(() => (e.target.files)); }} />
+                <input type="file" accept="image/png" onChange={(e) => { setFile(() => (e.target.files)); }} />
                 {/* <CloudinaryContext cloudName="dwb3ufwzf">
                   <div>
                     <Image publicId={imgURL} width="50" />
